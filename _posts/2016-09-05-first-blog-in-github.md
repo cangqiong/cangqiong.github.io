@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 第一篇博客
-categories: [learning]
-tags: [github, Talk]
+categories: [test]
+tags: [github, markdown]
 description: 在github上的第一篇博客
 ---
 
