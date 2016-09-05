@@ -1,6 +1,6 @@
-# Microdust 微尘
+# Microdust cangqiong
 
-This is a blog created by Azeril. The blog is live at [azeril.me](http://azeril.me/).
+This is a blog created by cangqiong. The blog is live at [cangqiong.github.io](https://cangqiong.github.io/).
 
 ## Thanks
 
@@ -10,6 +10,7 @@ The blog used many tool/service,many thanks to:
 * [Git](https://git-scm.com/), blogs and code files version control system;
 * [Jekyll](http://jekyllrb.com/), a static site generator;
 * [Clean Blog Theme](https://github.com/IronSummitMedia/startbootstrap-clean-blog-jekyll), a theme by Start Bootstrap;
+* [Build-Your-First-GitHub-Pages-Blog](https://github.com/Azeril/azeril.github.io), a bolg based on Clean Bolg Theme;
 * [Markdown](https://daringfireball.net/projects/markdown/), a beautiful lightweight markup language.
 * [DNSPod](https://www.dnspod.cn/), the DNS service provider who surport the domain name resolution;
 * [Duoshuo](http://duoshuo.com/), a socialization comments plugin.
@@ -18,7 +19,7 @@ The blog used many tool/service,many thanks to:
 
 ## How To Creat A Jekyll Blog
 
-[Build-Your-First-GitHub-Pages-Blog](http://azeril.me/blog/Build-Your-First-GitHub-Pages-Blog.html)
+[](http://azeril.me/blog/Build-Your-First-GitHub-Pages-Blog.html)
 
 Build your blog Step by step
 ## Just write
