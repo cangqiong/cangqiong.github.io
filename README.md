@@ -1,4 +1,4 @@
-# Microdust cangqiong
+# Littlestar cangqiong
 
 This is a blog created by cangqiong. The blog is live at [cangqiong.github.io](https://cangqiong.github.io/).
 

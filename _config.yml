@@ -1,8 +1,8 @@
 # Site settings
-title: Microdust
+title: LittleStar
 header-img: "img/autumn2.jpg"
 tagline: "吉光片羽"  
-description: "在遙遠的地方 一切虔誠終必相遇"  
+description: "下雨的时候，没伞的孩子需要继续奔跑"  
 baseurl: "https://cangqiong.github.io"  
 url: "https://cangqiong.github.io"  
 #url: "http://localhost:4000"
@@ -49,7 +49,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "Azeril"
+      author: "cangqiong"
       header-img: "img/fantasy.jpg" # We don't want posts without a header image, that whould mean white on white
 
 
@@ -57,9 +57,9 @@ defaults:
 comments :
   provider : duoshuo
   duoshuo :
-    short_name : Azeril
+    short_name : cangqiong
   disqus :
-      short_name : Azeril
+      short_name : cangqiong
 
 # Analytics and webmaster tools stuff goes here
 google_analytics: UA-66863061-1
