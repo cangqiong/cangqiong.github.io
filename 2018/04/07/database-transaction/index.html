@@ -7,7 +7,7 @@
 
     
 
-    <title>Java代理 | </title>
+    <title>数据库事务 | </title>
     <meta name="author" content="Chason">
     
     <meta name="description" content="记录自己的生活与学习">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="Java代理"/>
+    <meta property="og:title" content="数据库事务"/>
     <meta property="og:site_name" content="Chason&#39;s Blog.渺沧海之一粟"/>
 
     
@@ -225,7 +225,7 @@
             <div class="article-title">
                 
     
-        <h1>Java代理</h1>
+        <h1>数据库事务</h1>
     
 
 
@@ -234,7 +234,7 @@
     阅读次数 <span id="busuanzi_value_page_pv"></span></span>
 </div>
             </div>
-            <time class="pink-link-context" datetime="2018-03-25T14:10:25.000Z"><a href="/2018/03/25/java-and-proxy/">2018-03-25</a></time>
+            <time class="pink-link-context" datetime="2018-04-07T12:43:25.000Z"><a href="/2018/04/07/database-transaction/">2018-04-07</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -244,70 +244,58 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Java/" class="chip pink lighten-1">Java</a>
+            <a href="/tags/DB/" class="chip pink lighten-1">DB</a>
         
-            <a href="/tags/设计模式/" class="chip pink lighten-1">设计模式</a>
+            <a href="/tags/事务/" class="chip pink lighten-1">事务</a>
         
     </div>
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#代理模式"><span class="section table-of-contents-text">代理模式</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#代理模式架构"><span class="section table-of-contents-text">代理模式架构</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#代理模式简单样例"><span class="section table-of-contents-text">代理模式简单样例</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#动态代理"><span class="section table-of-contents-text">动态代理</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#动态代理实现"><span class="section table-of-contents-text">动态代理实现</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#JDK自带实现"><span class="section table-of-contents-text">JDK自带实现</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-text">总结</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#事务特性"><span class="section table-of-contents-text">事务特性</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#案例"><span class="section table-of-contents-text">案例</span></a></li></ol></li></ol>
 </div>
 
 
             <div class="entry pink-link-context">
                 <blockquote>
-<p>在使用Java的过程中，逐渐开始了解设计模式，其中代理模式是其中比较简单的设计模式，日常工作中也经常接触到代理模式的使用。</p>
+<p>数据库事务（Transaction）是指数据库管理系统执行过程中一个不可分割的逻辑单元，由有限的数据库操作语句组成。</p>
 </blockquote>
-<h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><p>代理模式（Proxy Pattern）使用代理对象完成用户请求，隐藏用户对真实对象的访问。代理模式其实非常容易理解。举个简单的例子： 小刘要找个房子，但他找房子并没有直接和房东联系，而是和中介联系。对于小刘而言，他作为客户并没有和房东（真实对象）打交道，只和中介（代理对象）沟通。似乎房东不存在，但事实上中介必须得有房东的授权，在核心问题上还得请示房东。</p>
-<p>在软件设计中，使用代理模式的场景也很多，比如为了系统的安全性屏蔽客户端访问真实的对象，或者为了屏蔽真实对象的实现细节，也可能是为了提升系统性能，对真实对象进行封装，到使用时候才进行初始化，从而达到延迟加载的目的。</p>
-<h2 id="代理模式架构"><a href="#代理模式架构" class="headerlink" title="代理模式架构"></a>代理模式架构</h2><p>代理模式架构比较简单，如下图所示，</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Proxy_pattern_diagram.svg/439px-Proxy_pattern_diagram.svg.png" alt="代理模式图片"></p>
-<p>​                                        代理模式架构图</p>
-<p>代理对象与真实对象实现同一主题接口，当客户端向真实对象发起请求时，代理对象调用真实对象进行操作。</p>
-<h2 id="代理模式简单样例"><a href="#代理模式简单样例" class="headerlink" title="代理模式简单样例"></a>代理模式简单样例</h2><p>下面给出一个代码样例。</p>
-<p><strong>主题接口：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ISubject</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">doAction</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>真实对象：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealObject</span> <span class="keyword">implements</span> <span class="title">ISubject</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">doAction</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"RealObject do something!"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Real object"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>主题接口：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyObject</span> <span class="keyword">implements</span> <span class="title">ISubject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> RealObject realObject;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">doAction</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(realObject == <span class="keyword">null</span>) &#123;  <span class="comment">// 在真正使用的时候，才创建真实对象</span></span><br><span class="line">            realObject = <span class="keyword">new</span> RealObject();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"ProxyObject do something!"</span>);</span><br><span class="line">        <span class="comment">// 执行真实对象的方法</span></span><br><span class="line">        <span class="keyword">return</span> realObject.doAction();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>客户端：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line"> 		ISubject subject = <span class="keyword">new</span> ProxyObject(); <span class="comment">//使用代理</span></span><br><span class="line"> 		subject.doAction(); </span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><p>上面的代码实例是静态代理，下面介绍动态代理。动态代理是指在运行时动态生成代理类。</p>
-<p>刚才的静态代理虽然看起来简单，但其实有很多缺点：</p>
+<p>事务的执行步骤：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span>;</span><br><span class="line">SQL execution 1 # rollback</span><br><span class="line">SQL execution 2 # rollback</span><br><span class="line">...</span><br><span class="line">SQL execution N # rollback</span><br><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
+<p>begin标识开始一个事务，后面的SQL语句是事务执行的操作，commit（提交）是结束当前事务并提交事务。而在语句执行过程中，可以回滚事务(Rollback)，回滚是指将数据恢复成事务开始之前的状态。</p>
+<p>##为什么需要事务？</p>
+<p>数据库有自己的SQL语句，用户可以使用SQL语句操作数据库，那为什么需要事务呢？SQL语句能够直接修改数据库中的数据，但却无法保证数据的一致性。比如经典的转账问题：账户A向账户B转账，只用SQL语句无法保证从账户A扣款成功，同时从账户B增加对应的金额。所以<strong>事务是为了保证数据库中数据的一致性。</strong></p>
+<h1 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h1><p>事务特性有哪些特性呢？</p>
+<ul>
+<li>原子性（Atomicity）:事务作为一个整体被执行，事务中的操作要么全部被执行，要么都不执行。</li>
+<li>一致性（Consistency）：事务应确保数据库的状态一一个一致状态转变为另一个一致状态。一致状态的含义是数据库中的数据应满足完整性约束。不能存在事务对数据部分修改的情况。</li>
+<li>隔离性（Isolation）：多个事务并发执行时，一个事务的执行不应该影响其他事务的执行。</li>
+<li>持久性（Durability）：已经提交的事务对数据库的修改应该永远保存在数据库中。对数据库数据的修改应该持久化到硬盘中，即使服务器当机了，只要数据库能正常访问，就一定能够恢复事务成功结束时的标志。</li>
+</ul>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>为说明数据库的特性，举一个经典的事务案例，账户Ａ向账号Ｂ转账100元，假设账户Ａ有800元，账户B有300元。要完成这个转账操作需要执行下面事务所包含的所有步骤，才能转账成功。</p>
 <ol>
-<li><p>代理类与真实类实现了相同的主题接口，代理对象与真实对象实现了相同的方法。这样就会出现大量的代码重复。如果主题接口增加一个方法，除了真实对象要实现这个方法外，代理对象也要实现这个方法。这样增加了维护的复杂度。</p>
-</li>
-<li><p>代理对象只能代理一种类型的对象。如果要代理多种类型的对象的话。每个真实对象都必须要有对应的代理对象。</p>
-<p>​</p>
-</li>
+<li>读取账户A金额800元。</li>
+<li>对账户A扣取100元，帐户A变为700元（内存）。</li>
+<li>将结果700元写入到A账户中（硬盘）。</li>
+<li>读取账户B金额300元。</li>
+<li>对帐户B进行增加100元，账户B变为400元（内存）。</li>
+<li>将结果400元写入到B账户中（硬盘）。</li>
 </ol>
-<p>如果可以通过一个代理类完成全部的代理的功能，那就需要使用动态代理。静态代理是在编译阶段就已经确定代理对象，而动态代理实在运行时，通过反射机制实现动态代理，并且能够代理多种类型的对象。</p>
-<h1 id="动态代理实现"><a href="#动态代理实现" class="headerlink" title="动态代理实现"></a>动态代理实现</h1><h2 id="JDK自带实现"><a href="#JDK自带实现" class="headerlink" title="JDK自带实现"></a>JDK自带实现</h2><p>动态代理类使用字节码动态生成加载技术，在运行时生成加载类。其中JDK自带实现动态代理功能，但功能较弱，只能生成同一个接口的代理类。下面对上面的实例进行改造：</p>
-<p><strong>动态代理</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubjectHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> ISubject realObject; <span class="comment">//定义主题接口</span></span><br><span class="line"> </span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//如果第一次调用，生成真实对象</span></span><br><span class="line">        <span class="keyword">if</span>(realObject == <span class="keyword">null</span>)&#123;</span><br><span class="line">            realObject = <span class="keyword">new</span> RealObject();</span><br><span class="line">        &#125;</span><br><span class="line">         System.out.println(<span class="string">"ProxyObject do something!"</span>);</span><br><span class="line">        <span class="comment">// 返回真实对象完成实际的操作 </span></span><br><span class="line">         <span class="keyword">return</span> method.invoke(realObject, args);  </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面实现了Handler,类似于上面代理类中具体逻辑。</p>
-<p><strong>生成动态代理对象</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bigdata.spitter.featch;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubjectHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> ISubject realObject;<span class="comment">//定义主题接口</span></span><br><span class="line"> </span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//如果第一次调用，生成真实对象</span></span><br><span class="line">        <span class="keyword">if</span>(realObject == <span class="keyword">null</span>)&#123;</span><br><span class="line">            realObject = <span class="keyword">new</span> RealObject();</span><br><span class="line">        &#125;</span><br><span class="line">         System.out.println(<span class="string">"ProxyObject do something!"</span>);</span><br><span class="line">        <span class="comment">// 返回真实对象完成实际的操作 </span></span><br><span class="line">        <span class="comment">//  return realObject.doAction();</span></span><br><span class="line">        <span class="keyword">return</span> method.invoke(realObject, args);  </span><br><span class="line">	&#125; </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ISubject <span class="title">createProxy</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ISubject proxy = (ISubject)Proxy.newProxyInstance(</span><br><span class="line">        ClassLoader.getSystemClassLoader(), <span class="keyword">new</span> Class[]&#123;ISubject.class&#125;, <span class="keyword">new</span> SubjectHandler());</span><br><span class="line">        <span class="keyword">return</span> proxy;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>运行实例</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </span><br><span class="line">        SubjectHandler subjectHandler = <span class="keyword">new</span> SubjectHandler();  </span><br><span class="line">        ISubject proxy = (ISubject)subjectHandler.createProxy();  </span><br><span class="line">        proxy.doAction();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面是基于JDK自带的动态代理实现方式，代理类逻辑由SubjectHandler，生成代理类后，由newProxyInstance()方法返回代理类的实例，一个动态代理就完成了。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文讲述了代理模式、静态代理与动态代理的区别，还有基于JDK自带功能动态代理的实现。总而言之，代理就是屏蔽或隐藏真实对象的行为，避免暴露更多的对象信息，降低客户端使用真实对象的复杂度。</p>
+<p>###原子性</p>
+<p>原子性保证事务中的所有操作必须全部执行，或全部不执行。上面的转账事务包含6个操作，原子性保证上面的6个操作必须全部执行成功，转账事务才能成功。如果在第2步账号A金额不够100元，转账失败，事务<strong>回滚</strong>。如果在第6步，突然系统断电或系统崩溃，整个事务还是得回滚。<strong>回滚</strong>是指将数据恢复到事务执行之前的状态，也就相当于事务中的操作都不执行。</p>
+<p>###一致性</p>
+<p>一致性是指数据库中的数据从一个一致性状态转变到另一个一致性。不能出现部分修改数据的情况。在上面的案例中，转账前账号A与账号B金额总和是1100，转账后还是1100，这就是一致性。不能出现账户A扣钱成功，但账号B没收到钱，那肯定有问题了。</p>
+<p>###隔离性</p>
+<p>在事务执行成功之前，即没有完成commit之前，查询账户A与账号B的金额，还是事务执行之前的数目。其他和A、B相关的并发转账事务或其他事务对当前转账不产生影响。</p>
+<p>###持久性</p>
+<p>当事务commit之后，即事务执行完成的时候，账户A与账户B的金额变成事务执行之后的数目，并持久化到硬盘中，之后的查询可以看到改变后的金额。即使系统故障，该事务也必须永久性生效。</p>
 
                 
+
+
 <p class="pink-link-context">
     <a href="/2018/03/31/strategy-pattern/" rel="next" title="策略模式">
-    上一篇：策略模式
-  </a>
-</p>
-
-
-
-<p class="pink-link-context">
-    <a href="/2018/03/17/restful-api/" rel="next" title="RESTful API介绍">
-    下一篇：RESTful API介绍
+    下一篇：策略模式
   </a>
 </p>
 
