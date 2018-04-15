@@ -163,16 +163,8 @@
         
 
             <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/2018/学习/">
-                    学习 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/2018/学习/总结/">
-                    总结 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/2018/设计/">
+                    设计 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -187,8 +179,16 @@
         
 
             <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/2018/设计/">
-                    设计 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/2018/学习/">
+                    学习 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/2018/学习/总结/">
+                    总结 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -274,8 +274,15 @@
 
             <div class="entry pink-link-context">
                 <blockquote>
-<p>在日常工作中，编辑文本或网页的时候，经常会用磁盘搜索功能或者在文本中搜索某个单词。例如：用记事本打开个文档后，搜索“测试”，就可以匹配到当前文档中“测试”这个词。<br>那有没有更加强大的文本匹配工具，给开发人员或者运维人员使用呢？一种不需要知道要匹配的值，只需知道要匹配的值满足的规则。这就要提起从Unix系统就开始使用的正则表达式了。<strong>正则表达式（regular expression）其实就是使用特定字符来匹配符合特殊字符确定的规则的字符串</strong>。**<br>其实正则表达式日常办公中，也经常使用。比如你打开文件管理器，在右边的搜索框，搜索“.txt”，就能搜到当前目录下的所有txt文件。这其实这就可以看成是正则表达式。</p>
+<p>在日常工作中，编辑文本或网页的时候，经常会用磁盘搜索功能或者在文本中搜索某个单词。例如：用记事本打开个文档后，搜索“测试”，就可以匹配到当前文档中“测试”这个词。</p>
 </blockquote>
+<blockquote>
+<p>那有没有更加强大的文本匹配工具，给开发人员或者运维人员使用呢？一种不需要知道要匹配的值，只需知道要匹配的值满足的规则。这就要提起从Unix系统就开始使用的正则表达式了。</p>
+</blockquote>
+<blockquote>
+<p>正则表达式（regular expression）其实就是使用特定字符来匹配符合特殊字符确定的规则的字符串。</p>
+</blockquote>
+<p>其实正则表达式日常办公中，也经常使用。比如你打开文件管理器，在右边的搜索框，搜索“.txt”，就能搜到当前目录下的所有txt文件。这其实这就可以看成是正则表达式。</p>
 <h1 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h1><p>上面说了正则表达式是使用特定字符来匹配想要的字符串。特定字符这里称为<strong>元字符</strong>。下面先看一个简单的实例：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grep -P "^test$" doc.txt</span><br><span class="line"><span class="meta">#</span> grep 这是Linux自带的正则shell方法</span><br><span class="line"><span class="meta">#</span> -P 表示采用Perl的正则表达式引擎，其实不加这个也可以，但有些元字符用不了</span><br><span class="line"><span class="meta">#</span> "^test$" 为正则表达式，其中^与$为元字符，test为普通字符</span><br><span class="line"><span class="meta">#</span> doc.txt 匹配的目标文档</span><br></pre></td></tr></table></figure>
 <p>如上所述：<code>^</code>与<code>$</code>为元字符,<code>^</code>表示一行的开始，而<code>$</code>为一行的结束，上面的正则表达式的含义是：匹配以<em>test</em>开头语且以<em>test</em>结尾的字符串。</p>
