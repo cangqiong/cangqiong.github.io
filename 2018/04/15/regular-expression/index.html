@@ -7,7 +7,7 @@
 
     
 
-    <title>数据库事务 | </title>
+    <title>正则表达式 | </title>
     <meta name="author" content="Chason">
     
     <meta name="description" content="记录自己的生活与学习">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="数据库事务"/>
+    <meta property="og:title" content="正则表达式"/>
     <meta property="og:site_name" content="Chason&#39;s Blog.渺沧海之一粟"/>
 
     
@@ -224,7 +224,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/2018/">2018</a><a class="breadcrumb" href="/categories/2018/技术总结/">技术总结</a>
+    <a class="breadcrumb" href="/categories/2018/">2018</a><a class="breadcrumb" href="/categories/2018/学习/">学习</a><a class="breadcrumb" href="/categories/2018/学习/总结/">总结</a>
 
 
         
@@ -241,7 +241,7 @@
             <div class="article-title">
                 
     
-        <h1>数据库事务</h1>
+        <h1>正则表达式</h1>
     
 
 
@@ -250,7 +250,7 @@
     阅读次数 <span id="busuanzi_value_page_pv"></span></span>
 </div>
             </div>
-            <time class="pink-link-context" datetime="2018-04-07T12:43:25.000Z"><a href="/2018/04/07/database-transaction/">2018-04-07</a></time>
+            <time class="pink-link-context" datetime="2018-04-15T09:35:25.000Z"><a href="/2018/04/15/regular-expression/">2018-04-15</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -260,59 +260,151 @@
             
     <div class="tags-row">
         
-            <a href="/tags/DB/" class="chip pink lighten-1">DB</a>
+            <a href="/tags/正则表达式/" class="chip pink lighten-1">正则表达式</a>
         
-            <a href="/tags/事务/" class="chip pink lighten-1">事务</a>
+            <a href="/tags/实例/" class="chip pink lighten-1">实例</a>
         
     </div>
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#为什么需要事务？"><span class="section table-of-contents-text">为什么需要事务？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#事务特性"><span class="section table-of-contents-text">事务特性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#案例"><span class="section table-of-contents-text">案例</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#原子性"><span class="section table-of-contents-text">原子性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#一致性"><span class="section table-of-contents-text">一致性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#隔离性"><span class="section table-of-contents-text">隔离性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#持久性"><span class="section table-of-contents-text">持久性</span></a></li></ol></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#nginx静态资源配置"><span class="section table-of-contents-text">nginx静态资源配置</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#爬虫匹配链接"><span class="section table-of-contents-text">爬虫匹配链接</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#推荐"><span class="section table-of-contents-text">推荐</span></a>
 </div>
 
 
             <div class="entry pink-link-context">
                 <blockquote>
-<p>数据库事务（Transaction）是指数据库管理系统执行过程中一个不可分割的逻辑单元，由有限的数据库操作语句组成。</p>
+<p>在日常工作中，编辑文本或网页的时候，经常会用磁盘搜索功能或者在文本中搜索某个单词。例如：用记事本打开个文档后，搜索“测试”，就可以匹配到当前文档中“测试”这个词。</p>
+<p>那有没有更加强大的文本匹配工具，给开发人员或者运维人员使用呢？一种不需要知道要匹配的值，只需知道要匹配的值满足的规则。这就要提起从Unix系统就开始使用的正则表达式了。<strong>正则表达式（regular expression）其实就是使用特定字符来匹配符合特殊字符确定的规则的字符串</strong>。</p>
+<p>其实正则表达式日常办公中，也经常使用。比如你打开文件管理器，在右边的搜索框，搜索“*.txt”，就能搜到当前目录下的所有txt文件。这其实这就可以看成是正则表达式。</p>
 </blockquote>
-<p>事务的执行步骤：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span>;</span><br><span class="line">SQL execution 1 # rollback</span><br><span class="line">SQL execution 2 # rollback</span><br><span class="line">...</span><br><span class="line">SQL execution N # rollback</span><br><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
-<p>begin标识开始一个事务，后面的SQL语句是事务执行的操作，commit（提交）是结束当前事务并提交事务。而在语句执行过程中，可以回滚事务(Rollback)，回滚是指将数据恢复成事务开始之前的状态。</p>
-<h1 id="为什么需要事务？"><a href="#为什么需要事务？" class="headerlink" title="为什么需要事务？"></a>为什么需要事务？</h1><p>数据库有自己的SQL语句，用户可以使用SQL语句操作数据库，那为什么需要事务呢？SQL语句能够直接修改数据库中的数据，但却无法保证数据的一致性。比如经典的转账问题：账户A向账户B转账，只用SQL语句无法保证从账户A扣款成功，同时从账户B增加对应的金额。所以<strong>事务是为了保证数据库中数据的一致性。</strong></p>
-<h1 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h1><p>事务特性有哪些特性呢？</p>
+<p>#元字符</p>
+<p>上面说了正则表达式是使用特定字符来匹配想要的字符串。特定字符这里称为<strong>元字符</strong>。下面先看一个简单的实例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grep -P "^test$" doc.txt</span><br><span class="line"><span class="meta">#</span> grep 这是Linux自带的正则shell方法</span><br><span class="line"><span class="meta">#</span> -P 表示采用Perl的正则表达式引擎，其实不加这个也可以，但有些元字符用不了</span><br><span class="line"><span class="meta">#</span> "^test$" 为正则表达式，其中^与$为元字符，test为普通字符</span><br><span class="line"><span class="meta">#</span> doc.txt 匹配的目标文档</span><br></pre></td></tr></table></figure>
+<p>如上所述：<code>^</code>与<code>$</code>为元字符,<code>^</code>表示一行的开始，而<code>$</code>为一行的结束，上面的正则表达式的含义是：匹配以<em>test</em>开头语且以<em>test</em>结尾的字符串。</p>
+<p>其中doc.txt的文本为</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">subject:测试正则表达式</span><br><span class="line">from: test123@163.com</span><br><span class="line">to: test456@163.com</span><br><span class="line">dear one:</span><br><span class="line"><span class="built_in">test</span></span><br><span class="line">  <span class="built_in">test</span></span><br><span class="line">        today has a rain.</span><br><span class="line">	TODAY IS A GOOD DAY</span><br><span class="line">abcderfghghghg</span><br><span class="line">123892332432</span><br><span class="line">789</span><br><span class="line">020-12345678</span><br><span class="line">telethone:020-79788888</span><br><span class="line">dfdf22测试中文字符串</span><br><span class="line">\s\d\S\w</span><br><span class="line">ip:22.105.145.123</span><br><span class="line">              the best wish!.</span><br></pre></td></tr></table></figure>
+<p>上面的执行结果为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai regex]# grep -P "^test$" doc.txt</span><br><span class="line">test</span><br></pre></td></tr></table></figure>
+<p>那如果要搜索电话号码呢？可以用下面的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai regex]# grep -P "\w+@\w+\.\w+" doc.txt</span><br><span class="line">from: test123@163.com</span><br><span class="line">to: test456@163.com</span><br></pre></td></tr></table></figure>
+<p>上面的<code>\w</code>明显就是元字符，它表示一个单词，指字母或数字或者小划线。常用的元字符如下所示</p>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>匹配除换行符以外的任意字符</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配字母或数字或下划线或汉字</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任意的空白符</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配数字</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配单词的开始或结束</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串的开始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结束</td>
+</tr>
+</tbody>
+</table>
+<p>那如果想匹配其中某个词，可以用<code>\b</code>+词+<code>\b</code>进行搜索，比如搜索a，只想搜索到词a（一个），而不是字母a。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai regex]# grep -P "\ba\b" doc.txt</span><br><span class="line">        today has a rain.</span><br></pre></td></tr></table></figure>
+<p>#量词</p>
+<p>那如果想搜索上面文本的电话号码，按照给定的元字符，可以这样搜索：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai regex]# grep -P "0\d\d-\d\d\d\d\d\d\d\d" doc.txt</span><br><span class="line">020-12345678</span><br><span class="line">telethone:020-79788888</span><br></pre></td></tr></table></figure>
+<p>但感觉是不是有点麻烦，上面的元字符只能匹配一个字符，匹配电话号码，还得10个元字符，这也太麻烦了，可以采用量词进行匹配：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai regex]# grep -P "0\d&#123;2&#125;-\d&#123;8&#125;" doc.txt</span><br><span class="line">020-12345678</span><br><span class="line">telethone:020-79788888</span><br></pre></td></tr></table></figure>
+<p>上面的{2}表示匹配两个满足\d规则的字符，{8}自然是匹配八个满足\d规则的字符。除了这种量词，还有其他量词</p>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>重复零次或更多次</td>
+</tr>
+<tr>
+<td>+</td>
+<td>重复一次或更多次</td>
+</tr>
+<tr>
+<td>?</td>
+<td>重复零次或一次</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>重复n次</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>重复n次或更多次</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>重复n到m次</td>
+</tr>
+</tbody>
+</table>
+<p>量词其实就是对前面的元字符的个数的描述。比如想匹配第一行以a开头的字符串：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai regex]# grep -P "^a\w*" doc.txt</span><br><span class="line">abcderfghghghg</span><br><span class="line"><span class="meta">#</span><span class="bash"> ^a\w* 表示以a开头后面的字符不限的字符串</span></span><br></pre></td></tr></table></figure>
+<p>#自定义字符</p>
+<p>使用指定的元字符与普通字符进行能够匹配指定的字符串，但是如果自己想匹配没有预定义元字符的字符集合时，那怎么操作呢？比如查找包含元音字母的单词，怎么办。</p>
+<p>很简单，只需要在中括号中列出来就可以了，<code>[aeiou]</code>表示aeiou中的任意字符，<code>[!?*]</code>表示其中任一字符，记住**方括号括起来的的只匹配一个字符，可以使用量词进行匹配多个字符。<code>[0-9]</code> 代表的含意与 <code>\d</code> 就是完全一致的，表示从0到9的数字，中括号中的<code>-</code>表示0与9之前的区间，即一个数字。同理 <code>[a-z0-9A-Z_]</code> 也完全等同于 <code>\w</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai regex]# grep -P &quot;\b\w*[0-9]\w*\b&quot; doc.txt #匹配包含数字的词</span><br><span class="line">from: test123@163.com</span><br><span class="line">to: test456@163.com</span><br><span class="line">123892332432</span><br><span class="line">789</span><br><span class="line">020-12345678</span><br><span class="line">telethone:020-79788888</span><br><span class="line">dfdf22测试中文字符</span><br></pre></td></tr></table></figure>
+<p>#转义字符</p>
+<p>通过上面的介绍，可以匹配大多数的字符串，但如果想匹配元字符对应的字符串呢？那就要用到转义字符了。</p>
+<p>比如想匹配<code>.</code>，就可以采取加<code>\</code>的方式进行转义，这样就会取消元字符的含义。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai regex]# grep -P "\.$" doc.txt  #可以试一下不加\</span><br><span class="line">        today has a rain.</span><br><span class="line">              the best wish!.</span><br></pre></td></tr></table></figure>
+<p>#选择符与分组</p>
+<p>如果想匹配满足多个表达式的字符串，这就要用到<code>|</code>，它表示或，也就是说满足两个表达式的一个就可以了。假设要搜索邮件的收件人与发件人，收件人可以用<code>^to:\w</code>*，而发件人可以用<code>^from:\w</code>,两个条件综合就是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai regex]# grep -P "^(from|to)\w*" doc.txt</span><br><span class="line">from: test123@163.com</span><br><span class="line">to: test456@163.com</span><br></pre></td></tr></table></figure>
+<p>上面的<code>(</code> 与<code>)</code>也是元字符串，可以用括号指定子表达式，也叫做分组，也可以用量词表示字表达试的次数，比如匹配IP：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai regex]# grep -P "(\d&#123;1,3&#125;\.)&#123;3&#125;\d&#123;1,3&#125;" doc.txt</span><br><span class="line">ip:22.105.145.123</span><br></pre></td></tr></table></figure>
+<p>#实例</p>
+<p>上面讲了如何写正则表达式，下面举几个例子说明一下正则的用途。</p>
+<h2 id="nginx静态资源配置"><a href="#nginx静态资源配置" class="headerlink" title="nginx静态资源配置"></a>nginx静态资源配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location ~* ^.+\.(jpg|jpeg|gif|css|png|js|ico|html|txt)$ &#123; #对静态资源进行访问</span><br><span class="line">       access_log        off;</span><br><span class="line">       expires           30d;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>上面的<code>^.+\.(jpg|jpeg|gif|css|png|js|ico|html|txt)$</code>字符串就是正则表达式，匹配的是任意字符为前缀以<code>.txt/jpg/...</code>结尾的URL字符串。</p>
+<h2 id="爬虫匹配链接"><a href="#爬虫匹配链接" class="headerlink" title="爬虫匹配链接"></a>爬虫匹配链接</h2><p>在网络爬虫中，为了抓取外链，需要通过正则表达式匹配链接。可以匹配网页html代码中的<code>&lt;a&gt;</code>链接，</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a\b("[^"]*"|'[^']*'|[^'"&gt;])*&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h1><p>正则表达式有点难以理解，但功能其实很强大，其实还有其他内容没有介绍，可以看我给出的参考资料。</p>
 <ul>
-<li>原子性（Atomicity）:事务作为一个整体被执行，事务中的操作要么全部被执行，要么都不执行。</li>
-<li>一致性（Consistency）：事务应确保数据库的状态一一个一致状态转变为另一个一致状态。一致状态的含义是数据库中的数据应满足完整性约束。不能存在事务对数据部分修改的情况。</li>
-<li>隔离性（Isolation）：多个事务并发执行时，一个事务的执行不应该影响其他事务的执行。</li>
-<li>持久性（Durability）：已经提交的事务对数据库的修改应该永远保存在数据库中。对数据库数据的修改应该持久化到硬盘中，即使服务器当机了，只要数据库能正常访问，就一定能够恢复事务成功结束时的标志。</li>
+<li><p>文章<br>《正则表达式30分钟入门教程》</p>
+<p>《正则表达式经典实例》</p>
+</li>
+<li><p>在线解析工具：<a href="https://regexper.com" target="_blank" rel="noopener">https://regexper.com</a></p>
+</li>
 </ul>
-<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><p>为说明数据库的特性，举一个经典的事务案例，账户Ａ向账号Ｂ转账100元，假设账户Ａ有800元，账户B有300元。要完成这个转账操作需要执行下面事务所包含的所有步骤，才能转账成功。</p>
-<ol>
-<li>读取账户A金额800元。</li>
-<li>对账户A扣取100元，帐户A变为700元（内存）。</li>
-<li>将结果700元写入到A账户中（硬盘）。</li>
-<li>读取账户B金额300元。</li>
-<li>对帐户B进行增加100元，账户B变为400元（内存）。</li>
-<li>将结果400元写入到B账户中（硬盘）。</li>
-</ol>
-<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>原子性保证事务中的所有操作必须全部执行，或全部不执行。上面的转账事务包含6个操作，原子性保证上面的6个操作必须全部执行成功，转账事务才能成功。如果在第2步账号A金额不够100元，转账失败，事务<strong>回滚</strong>。如果在第6步，突然系统断电或系统崩溃，整个事务还是得回滚。<strong>回滚</strong>是指将数据恢复到事务执行之前的状态，也就相当于事务中的操作都不执行。</p>
-<h2 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h2><p>一致性是指数据库中的数据从一个一致性状态转变到另一个一致性。不能出现部分修改数据的情况。在上面的案例中，转账前账号A与账号B金额总和是1100，转账后还是1100，这就是一致性。不能出现账户A扣钱成功，但账号B没收到钱，那肯定有问题了。</p>
-<h2 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h2><p>在事务执行成功之前，即没有完成commit之前，查询账户A与账号B的金额，还是事务执行之前的数目。其他和A、B相关的并发转账事务或其他事务对当前转账不产生影响。</p>
-<h2 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h2><p>当事务commit之后，即事务执行完成的时候，账户A与账户B的金额变成事务执行之后的数目，并持久化到硬盘中，之后的查询可以看到改变后的金额。即使系统故障，该事务也必须永久性生效。</p>
 
                 
-<p class="pink-link-context">
-    <a href="/2018/04/15/regular-expression/" rel="next" title="正则表达式">
-    上一篇：正则表达式
-  </a>
-</p>
-
 
 
 <p class="pink-link-context">
-    <a href="/2018/03/31/strategy-pattern/" rel="next" title="策略模式">
-    下一篇：策略模式
+    <a href="/2018/04/07/database-transaction/" rel="next" title="数据库事务">
+    下一篇：数据库事务
   </a>
 </p>
 

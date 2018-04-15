@@ -7,7 +7,7 @@
 
     
 
-    <title>数据库事务 | </title>
+    <title>总结 | </title>
     <meta name="author" content="Chason">
     
     <meta name="description" content="记录自己的生活与学习">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="数据库事务"/>
+    
     <meta property="og:site_name" content="Chason&#39;s Blog.渺沧海之一粟"/>
 
     
@@ -217,115 +217,30 @@
 
     <main>
         <div class="container main-container">
-    <nav class="page-nav hide-on-small-only">
+    
+
+<nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
         <span class="breadcrumb">当前位置（分类目录）</span>
         
-            
-    
-    
-    <a class="breadcrumb" href="/categories/2018/">2018</a><a class="breadcrumb" href="/categories/2018/技术总结/">技术总结</a>
-
 
         
-
+            <a class="breadcrumb" href="/categories/2018/学习/总结/">总结</a>
         
     </div>
 </nav>
 
-<article>
-    <div class="card">
-        <div class="card-content">
-            
-
-            <div class="article-title">
-                
-    
-        <h1>数据库事务</h1>
-    
 
 
-       <div style="float: right;color: #E91E63">
-    <span id="busuanzi_container_page_pv" style="display: none;">
-    阅读次数 <span id="busuanzi_value_page_pv"></span></span>
-</div>
-            </div>
-            <time class="pink-link-context" datetime="2018-04-07T12:43:25.000Z"><a href="/2018/04/07/database-transaction/">2018-04-07</a></time>
-
-            <span id="busuanzi_container_page_pv" class="read-times-container">
-    <i class="fa fa-eye"></i>
-    <span id="busuanzi_value_page_pv"></span>
-</span>
-
-            
-    <div class="tags-row">
+    <div class="collection mt-0">
         
-            <a href="/tags/DB/" class="chip pink lighten-1">DB</a>
-        
-            <a href="/tags/事务/" class="chip pink lighten-1">事务</a>
+            <a href="/2018/04/15/regular-expression/" class="collection-item grey-text text-darken-1">
+                <time datetime="2018-04-15T09:35:25.000Z">2018-04-15</time>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                正则表达式
+            </a>
         
     </div>
-
-
-            <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#为什么需要事务？"><span class="section table-of-contents-text">为什么需要事务？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#事务特性"><span class="section table-of-contents-text">事务特性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#案例"><span class="section table-of-contents-text">案例</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#原子性"><span class="section table-of-contents-text">原子性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#一致性"><span class="section table-of-contents-text">一致性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#隔离性"><span class="section table-of-contents-text">隔离性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#持久性"><span class="section table-of-contents-text">持久性</span></a></li></ol></li></ol>
-</div>
-
-
-            <div class="entry pink-link-context">
-                <blockquote>
-<p>数据库事务（Transaction）是指数据库管理系统执行过程中一个不可分割的逻辑单元，由有限的数据库操作语句组成。</p>
-</blockquote>
-<p>事务的执行步骤：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span>;</span><br><span class="line">SQL execution 1 # rollback</span><br><span class="line">SQL execution 2 # rollback</span><br><span class="line">...</span><br><span class="line">SQL execution N # rollback</span><br><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
-<p>begin标识开始一个事务，后面的SQL语句是事务执行的操作，commit（提交）是结束当前事务并提交事务。而在语句执行过程中，可以回滚事务(Rollback)，回滚是指将数据恢复成事务开始之前的状态。</p>
-<h1 id="为什么需要事务？"><a href="#为什么需要事务？" class="headerlink" title="为什么需要事务？"></a>为什么需要事务？</h1><p>数据库有自己的SQL语句，用户可以使用SQL语句操作数据库，那为什么需要事务呢？SQL语句能够直接修改数据库中的数据，但却无法保证数据的一致性。比如经典的转账问题：账户A向账户B转账，只用SQL语句无法保证从账户A扣款成功，同时从账户B增加对应的金额。所以<strong>事务是为了保证数据库中数据的一致性。</strong></p>
-<h1 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h1><p>事务特性有哪些特性呢？</p>
-<ul>
-<li>原子性（Atomicity）:事务作为一个整体被执行，事务中的操作要么全部被执行，要么都不执行。</li>
-<li>一致性（Consistency）：事务应确保数据库的状态一一个一致状态转变为另一个一致状态。一致状态的含义是数据库中的数据应满足完整性约束。不能存在事务对数据部分修改的情况。</li>
-<li>隔离性（Isolation）：多个事务并发执行时，一个事务的执行不应该影响其他事务的执行。</li>
-<li>持久性（Durability）：已经提交的事务对数据库的修改应该永远保存在数据库中。对数据库数据的修改应该持久化到硬盘中，即使服务器当机了，只要数据库能正常访问，就一定能够恢复事务成功结束时的标志。</li>
-</ul>
-<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><p>为说明数据库的特性，举一个经典的事务案例，账户Ａ向账号Ｂ转账100元，假设账户Ａ有800元，账户B有300元。要完成这个转账操作需要执行下面事务所包含的所有步骤，才能转账成功。</p>
-<ol>
-<li>读取账户A金额800元。</li>
-<li>对账户A扣取100元，帐户A变为700元（内存）。</li>
-<li>将结果700元写入到A账户中（硬盘）。</li>
-<li>读取账户B金额300元。</li>
-<li>对帐户B进行增加100元，账户B变为400元（内存）。</li>
-<li>将结果400元写入到B账户中（硬盘）。</li>
-</ol>
-<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>原子性保证事务中的所有操作必须全部执行，或全部不执行。上面的转账事务包含6个操作，原子性保证上面的6个操作必须全部执行成功，转账事务才能成功。如果在第2步账号A金额不够100元，转账失败，事务<strong>回滚</strong>。如果在第6步，突然系统断电或系统崩溃，整个事务还是得回滚。<strong>回滚</strong>是指将数据恢复到事务执行之前的状态，也就相当于事务中的操作都不执行。</p>
-<h2 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h2><p>一致性是指数据库中的数据从一个一致性状态转变到另一个一致性。不能出现部分修改数据的情况。在上面的案例中，转账前账号A与账号B金额总和是1100，转账后还是1100，这就是一致性。不能出现账户A扣钱成功，但账号B没收到钱，那肯定有问题了。</p>
-<h2 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h2><p>在事务执行成功之前，即没有完成commit之前，查询账户A与账号B的金额，还是事务执行之前的数目。其他和A、B相关的并发转账事务或其他事务对当前转账不产生影响。</p>
-<h2 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h2><p>当事务commit之后，即事务执行完成的时候，账户A与账户B的金额变成事务执行之后的数目，并持久化到硬盘中，之后的查询可以看到改变后的金额。即使系统故障，该事务也必须永久性生效。</p>
-
-                
-<p class="pink-link-context">
-    <a href="/2018/04/15/regular-expression/" rel="next" title="正则表达式">
-    上一篇：正则表达式
-  </a>
-</p>
-
-
-
-<p class="pink-link-context">
-    <a href="/2018/03/31/strategy-pattern/" rel="next" title="策略模式">
-    下一篇：策略模式
-  </a>
-</p>
-
-
-            </div>
-			
-        </div>
-    </div>
-</article>
-
-
-
-
 
 
 </div>
