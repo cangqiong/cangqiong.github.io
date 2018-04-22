@@ -7,7 +7,7 @@
 
     
 
-    <title>RESTful API介绍 | </title>
+    <title>Spring | </title>
     <meta name="author" content="Chason">
     
     <meta name="description" content="记录自己的生活与学习">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="RESTful API介绍"/>
+    
     <meta property="og:site_name" content="Chason&#39;s Blog.渺沧海之一粟"/>
 
     
@@ -217,120 +217,30 @@
 
     <main>
         <div class="container main-container">
-    <nav class="page-nav hide-on-small-only">
+    
+
+<nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（分类目录）</span>
-        
-            
-    
-    
-    <a class="breadcrumb" href="/categories/2018/">2018</a><a class="breadcrumb" href="/categories/2018/技术总结/">技术总结</a>
-
-
+        <span class="breadcrumb">当前位置（标签）</span>
         
 
+        
+            <a class="breadcrumb" href="/tags/Spring/">Spring</a>
         
     </div>
 </nav>
 
-<article>
-    <div class="card">
-        <div class="card-content">
-            
-
-            <div class="article-title">
-                
-    
-        <h1>RESTful API介绍</h1>
-    
 
 
-       <div style="float: right;color: #E91E63">
-    <span id="busuanzi_container_page_pv" style="display: none;">
-    阅读次数 <span id="busuanzi_value_page_pv"></span></span>
-</div>
-            </div>
-            <time class="pink-link-context" datetime="2018-03-17T14:20:25.000Z"><a href="/2018/03/17/restful-api/">2018-03-17</a></time>
-
-            <span id="busuanzi_container_page_pv" class="read-times-container">
-    <i class="fa fa-eye"></i>
-    <span id="busuanzi_value_page_pv"></span>
-</span>
-
-            
-    <div class="tags-row">
+    <div class="collection mt-0">
         
-            <a href="/tags/api/" class="chip pink lighten-1">api</a>
+            <a href="/2018/04/22/build-own-spring/" class="collection-item grey-text text-darken-1">
+                <time datetime="2018-04-22T12:20:25.000Z">2018-04-22</time>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                自己实现Spring
+            </a>
         
     </div>
-
-
-            <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#REST理解"><span class="section table-of-contents-text">REST理解</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#HTTP方法"><span class="section table-of-contents-text">HTTP方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#RESTful-API"><span class="section table-of-contents-text">RESTful API</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#RESTful-API-常见设计错误"><span class="section table-of-contents-text">RESTful API 常见设计错误</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#RESTful-API具体实例"><span class="section table-of-contents-text">RESTful API具体实例</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-text">总结</span></a></li></ol>
-</div>
-
-
-            <div class="entry pink-link-context">
-                <p>REST，刚接触这个词的时候，还以为是reset，后来又以为是rest(休息)，后来才知道它是英文“Representational State Transfer”的缩写，取其首字母得到REST。这段英文的翻译可以为“表现层状态转化”。它是Roy Thomas Fielding博士于2000年在他的博士论文中提出来的一种万维网软件架构风格。</p>
-<h1 id="REST理解"><a href="#REST理解" class="headerlink" title="REST理解"></a>REST理解</h1><p>刚听这个词是不是很蒙，即使看了上面的介绍，是不是也觉得表现层状态转化是什么鬼？<br>那下面我进行详细解释<br>表现层（Representation）是指资源（Resources）的表现层。资源，其实就是网络上的可以认知的资源，比如文档、音乐、视频。可以通过URI(统一资源定位符)进行访问。</p>
-<p>状态转化是指客户端与服务端的互动过程中，这必然涉及到数据与状态的变化。</p>
-<p>RESET架构究竟是什么呢？</p>
-<ol>
-<li>每个URI标识互联网上的资源</li>
-<li>连接是无状态的</li>
-<li>客户端通过HTTP常用方法，对服务器端资源进行操作，实现”表现层状态转化”。</li>
-</ol>
-<h1 id="HTTP方法"><a href="#HTTP方法" class="headerlink" title="HTTP方法"></a>HTTP方法</h1><p>HTTP总共定义了八个方法，最常见的有4个，而设计RESTful接口的时候，应该遵循“安全性”与“幂等性”的要求</p>
-<ul>
-<li>安全性：无论请求多少次，都不会改变资源的状态。比如GET操作，无论执行多少遍，都不会改变资源的状态。所以对于GET类API，在编写应用端代码时，切记要尽可能避免出现删除或者更新数据的逻辑。</li>
-<li>幂等性：无论是执行一次，还是执行多次，效果是等价的，比如 DELETE，PUT操作。以PUT操作为例，更新一次和更新多次，实际结果都是更新后的结果了。<br>具有安全性的方法：GET、HEAD、OPTIONS<br>具有幂等性的方法：GET、PUT、DELETE</li>
-</ul>
-<blockquote>
-<p>GET(SELECT) -&gt; 查询操作,从服务器中取出资源<br>POST(CREATE) -&gt; 添加操作，在服务器新建资源<br>PUT(UPDATE) -&gt; 在服务器更新资源（客户端提供改变后的完整资源）。<br>PATCH(UPDATE) -&gt; 服务器更新资源（客户端提供改变的属性）<br>DELETE(DELETE) -&gt; 从服务器删除资源<br>另外两个不常用<br>HEAD -&gt; 获取资源的元数据。<br>OPTIONS -&gt; 获取信息，关于资源的哪些属性是客户端可以改变的。</p>
-</blockquote>
-<h1 id="RESTful-API"><a href="#RESTful-API" class="headerlink" title="RESTful API"></a>RESTful API</h1><p>REST是一种软件架构风格，并不是一种具体的标准。而在实际的后台开发过程中，逐渐变成面向接口进行开发，而为了让接口更加便于理解，更加规范，更加便于规范，业界逐渐开始采用REST风格。于是乎产生了具有REST风格的web API，而大家称之为RESTful API。</p>
-<p>为了区分一般API与RESTful API,下面我先给出一个一般API，再给出RESTful API。</p>
-<blockquote>
-<p>POST <a href="http://localhost:8080/createUser" target="_blank" rel="noopener">http://localhost:8080/createUser</a><br>GET <a href="http://localhost:8080/getUser?id=123" target="_blank" rel="noopener">http://localhost:8080/getUser?id=123</a></p>
-</blockquote>
-<p>看完是不是觉得很熟悉，下面给出对应的RESTful 接口</p>
-<blockquote>
-<p>POST <a href="http://localhost:8080/users" target="_blank" rel="noopener">http://localhost:8080/users</a><br>GET <a href="http://localhost:8080/users/123" target="_blank" rel="noopener">http://localhost:8080/users/123</a></p>
-</blockquote>
-<h1 id="RESTful-API-常见设计错误"><a href="#RESTful-API-常见设计错误" class="headerlink" title="RESTful API 常见设计错误"></a>RESTful API 常见设计错误</h1><p><strong>URI包含动词。</strong>这是最常见的错误。RESTful 接口应该是采用对应的HTTP动词作为操作，而后面的URL链接标识具体的资源，它表示资源的状态转移。”资源”表示一种实体，所以应该是名词，URI不应该有动词，动词应该放在HTTP协议中。<br>举例来说，某个URI是/users/show/1，其中show是动词，这个URI就设计错了，正确的写法应该是/posts/1，然后用GET方法表示show。</p>
-<p><strong>使用名词单数</strong><br>为了不混淆名词的单复数。保持简单，只用复数名词定义所有资源。<br>/cars 代替 /car<br>/users 代替 /user<br>/products 代替 /product<br>/settings 代替 /settings</p>
-<p><strong>名词使用驼峰模式或眼镜蛇模式</strong>。资源名称应该尽量采用小写或使用”-“进行连接<br>/product-name 代替 /productName</p>
-<h1 id="RESTful-API具体实例"><a href="#RESTful-API具体实例" class="headerlink" title="RESTful API具体实例"></a>RESTful API具体实例</h1><p>RESTful API常见路径为：<strong>/版本/模块/资源/{标识}/集合</strong>。<br>下面是具体样例</p>
-<blockquote>
-<p>/user/{uid}/frends -&gt; 好友列表<br>/user/{uid}/followers -&gt; 关注列表<br>GET /tickets # 获取ticket列表<br>GET /tickets/12 # 查看某个具体的ticket<br>POST /tickets # 新建一个ticket<br>PUT /tickets/12 # 更新ticket 12.<br>DELETE /tickets/12 #删除ticekt 12  </p>
-</blockquote>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实RESTful API就是采用REST架构风格的API，便于理解与规范开发。而REST架构风格就是使用HTTP名词作为操作，而操作的对象是URL对应的资源。</p>
-
-                
-<p class="pink-link-context">
-    <a href="/2018/03/25/java-and-proxy/" rel="next" title="Java代理">
-    上一篇：Java代理
-  </a>
-</p>
-
-
-
-<p class="pink-link-context">
-    <a href="/2018/03/11/open-api-security/" rel="next" title="Open api安全设计与实现">
-    下一篇：Open api安全设计与实现
-  </a>
-</p>
-
-
-            </div>
-			
-        </div>
-    </div>
-</article>
-
-
-
-
 
 
 </div>
