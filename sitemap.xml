@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://cangqiong.github.io/2018/05/13/cglib-and-dynamic-proxy/</loc>
+    
+    <lastmod>2018-06-17T17:17:17.423Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://cangqiong.github.io/2018/06/17/linux-and-location-problem/</loc>
     
     <lastmod>2018-06-17T17:15:26.468Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://cangqiong.github.io/2018/06/04/template-method/</loc>
     
     <lastmod>2018-06-17T17:13:49.413Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cangqiong.github.io/2018/05/13/cglib-and-dynamic-proxy/</loc>
-    
-    <lastmod>2018-06-17T16:31:42.267Z</lastmod>
     
   </url>
   
