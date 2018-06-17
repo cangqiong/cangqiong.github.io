@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://cangqiong.github.io/2018/06/17/linux-and-location-problem/</loc>
+    
+    <lastmod>2018-06-17T17:15:26.468Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://cangqiong.github.io/2018/05/27/state-pattern/</loc>
+    
+    <lastmod>2018-06-17T17:14:15.779Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://cangqiong.github.io/2018/03/31/strategy-pattern/</loc>
+    
+    <lastmod>2018-06-17T17:14:04.188Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://cangqiong.github.io/2018/06/04/template-method/</loc>
     
-    <lastmod>2018-06-17T16:34:05.712Z</lastmod>
+    <lastmod>2018-06-17T17:13:49.413Z</lastmod>
     
   </url>
   
@@ -12,20 +33,6 @@
     <loc>https://cangqiong.github.io/2018/05/13/cglib-and-dynamic-proxy/</loc>
     
     <lastmod>2018-06-17T16:31:42.267Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cangqiong.github.io/2018/05/27/state-pattern/</loc>
-    
-    <lastmod>2018-06-17T16:30:47.522Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cangqiong.github.io/2018/06/17/linux-and-location-problem/</loc>
-    
-    <lastmod>2018-06-17T16:27:33.397Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>https://cangqiong.github.io/2018/04/07/database-transaction/</loc>
     
     <lastmod>2018-04-07T12:47:10.471Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cangqiong.github.io/2018/03/31/strategy-pattern/</loc>
-    
-    <lastmod>2018-03-31T08:59:51.475Z</lastmod>
     
   </url>
   
