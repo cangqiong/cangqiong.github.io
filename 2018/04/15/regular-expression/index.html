@@ -156,7 +156,15 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/2018/">
-                    2018 <span class="right">7 篇</span></a>
+                    2018 <span class="right">11 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/2018/技术总结/">
+                    技术总结 <span class="right">9 篇</span></a>
                 </a>
             </li>
 
@@ -165,14 +173,6 @@
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/2018/设计/">
                     设计 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/2018/技术总结/">
-                    技术总结 <span class="right">5 篇</span></a>
                 </a>
             </li>
 
@@ -284,7 +284,7 @@
 </blockquote>
 <p>其实正则表达式日常办公中，也经常使用。比如你打开文件管理器，在右边的搜索框，搜索“.txt”，就能搜到当前目录下的所有txt文件。这其实这就可以看成是正则表达式。</p>
 <h1 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h1><p>上面说了正则表达式是使用特定字符来匹配想要的字符串。特定字符这里称为<strong>元字符</strong>。下面先看一个简单的实例：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grep -P "^test$" doc.txt</span><br><span class="line"><span class="meta">#</span> grep 这是Linux自带的正则shell方法</span><br><span class="line"><span class="meta">#</span> -P 表示采用Perl的正则表达式引擎，其实不加这个也可以，但有些元字符用不了</span><br><span class="line"><span class="meta">#</span> "^test$" 为正则表达式，其中^与$为元字符，test为普通字符</span><br><span class="line"><span class="meta">#</span> doc.txt 匹配的目标文档</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grep -P "^test$" doc.txt</span><br><span class="line"><span class="meta">#</span><span class="bash"> grep 这是Linux自带的正则shell方法</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -P 表示采用Perl的正则表达式引擎，其实不加这个也可以，但有些元字符用不了</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="string">"^test$"</span> 为正则表达式，其中^与$为元字符，<span class="built_in">test</span>为普通字符</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> doc.txt 匹配的目标文档</span></span><br></pre></td></tr></table></figure>
 <p>如上所述：<code>^</code>与<code>$</code>为元字符,<code>^</code>表示一行的开始，而<code>$</code>为一行的结束，上面的正则表达式的含义是：匹配以<em>test</em>开头语且以<em>test</em>结尾的字符串。</p>
 <p>其中doc.txt的文本为</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">subject:测试正则表达式</span><br><span class="line">from: test123@163.com</span><br><span class="line">to: test456@163.com</span><br><span class="line">dear one:</span><br><span class="line"><span class="built_in">test</span></span><br><span class="line">  <span class="built_in">test</span></span><br><span class="line">        today has a rain.</span><br><span class="line">	TODAY IS A GOOD DAY</span><br><span class="line">abcderfghghghg</span><br><span class="line">123892332432</span><br><span class="line">789</span><br><span class="line">020-12345678</span><br><span class="line">telethone:020-79788888</span><br><span class="line">dfdf22测试中文字符串</span><br><span class="line">\s\d\S\w</span><br><span class="line">ip:22.105.145.123</span><br><span class="line">              the best wish!.</span><br></pre></td></tr></table></figure>

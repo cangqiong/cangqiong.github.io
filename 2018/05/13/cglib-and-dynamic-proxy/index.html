@@ -7,7 +7,7 @@
 
     
 
-    <title>Open api | </title>
+    <title>策略模式 | </title>
     <meta name="author" content="Chason">
     
     <meta name="description" content="记录自己的生活与学习">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="策略模式"/>
     <meta property="og:site_name" content="Chason&#39;s Blog.渺沧海之一粟"/>
 
     
@@ -217,30 +217,116 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（标签）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
         
+            
+    
+    
+    <a class="breadcrumb" href="/categories/2018/">2018</a><a class="breadcrumb" href="/categories/2018/技术总结/">技术总结</a>
+
 
         
-            <a class="breadcrumb" href="/tags/Open-api/">Open api</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>策略模式</h1>
+    
 
 
-    <div class="collection mt-0">
+       <div style="float: right;color: #E91E63">
+    <span id="busuanzi_container_page_pv" style="display: none;">
+    阅读次数 <span id="busuanzi_value_page_pv"></span></span>
+</div>
+            </div>
+            <time class="pink-link-context" datetime="2018-05-13T05:52:05.670Z"><a href="/2018/05/13/cglib-and-dynamic-proxy/">2018-05-13</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
         
-            <a href="/2018/03/11/open-api-security/" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-03-11T12:50:25.000Z">2018-03-11</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Open api安全设计与实现
-            </a>
+            <a href="/tags/动态代理/" class="chip pink lighten-1">动态代理</a>
         
     </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#CGLIB介绍"><span class="section table-of-contents-text">CGLIB介绍</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#CGLIB原理"><span class="section table-of-contents-text">CGLIB原理</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#字节码"><span class="section table-of-contents-text">字节码</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#CGLIB结构"><span class="section table-of-contents-text">CGLIB结构</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-text">总结</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="CGLIB介绍"><a href="#CGLIB介绍" class="headerlink" title="CGLIB介绍"></a>CGLIB介绍</h1><blockquote>
+<p>Cglib(Byte Code Generation Library )是一个高层次的生成与转化Java字节码的API。之所以称为高层次是因为它底层采用ASM(字节码操作框架）。通过生成动态代理对象与拦截属性访问，cglib使用在AOP，测试，数据访问框架中。</p>
+<p>常用的使用框架：Spring ，Hibernate，Mybatis。</p>
+</blockquote>
+<h1 id="CGLIB原理"><a href="#CGLIB原理" class="headerlink" title="CGLIB原理"></a>CGLIB原理</h1><h2 id="字节码"><a href="#字节码" class="headerlink" title="字节码"></a>字节码</h2><p>Cglib是字节码生成工具包，字节码指Java字节码，通常开发Java编写的为Java源文件，以.java结尾，然后用编译器编译成class文件。class文件就是字节码文件，可以用编辑器打开，可以看到class文件对应的为二进制文件，它包含的是与平台无关的能被JVM执行的指令格式，所以称之为字节码文件。</p>
+<p>JVM能够读取所有符合JVM规范的字节码。JAVA字节码不仅能够以文件的形式存储在磁盘上，还可以以网络的方式进行下载，还可以存在内存中。JVM中的类加载器会负责将包含字节代码的字节数组(byte[])中定义出类。在某些时候，可以动态生成Java字节码，或者对已有的字节码进行修改，在这里就要提到本文提到的ASM与CGLIB了。CGLIB本质就是封装了ASM，简化了ASM的操作，实现了在运行器生成新的字节码。</p>
+<h2 id="CGLIB结构"><a href="#CGLIB结构" class="headerlink" title="CGLIB结构"></a>CGLIB结构</h2><p><img src="http://jnb.ociweb.com/jnb/jnbNov2005_files/jnbNov2005-1.PNG" alt="CGLIB组成结构"></p>
+<p>#CGLIB实现动态代理</p>
+<p>之前的博客写过采用JDK自带的代理类实现动态代理，但必须代理类与被代理类必须实现同一接口，这就限制了某些没有实现接口的类的动态代理功能。采用CGLIB类实现的动态代理无需实现通过接口，下面进行具体介绍。</p>
+<ol>
+<li>导入maven包。直接引入cglib-nodep包，这样就无需导入其他包，直接引入cglib需要依赖其他的包</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cglib<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cglib-nodep<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>定义业务逻辑。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>实现MethodInterceptor接口，定义方法的拦截器</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CglibProxy</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span> </span>&#123;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> obj         被代理对象</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> method      被代理方法</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> args        参数</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> methodProxy 代理方法</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> 代理对象</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object obj, Method method, Object[] args, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"Before: "</span> + method);</span><br><span class="line">       Object object = methodProxy.invokeSuper(obj, args);</span><br><span class="line">       System.out.println(<span class="string">"After: "</span> + method);</span><br><span class="line">       <span class="keyword">return</span> object;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 获取代理对象</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> clazz 被代理类型</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Class&lt;T&gt; clazz)</span> </span>&#123;</span><br><span class="line">       Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line">       enhancer.setSuperclass(clazz);</span><br><span class="line">       enhancer.setCallback(<span class="keyword">this</span>);</span><br><span class="line">       <span class="keyword">return</span> (T)enhancer.create();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>验证</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 将代理类输出到指定目录</span></span><br><span class="line">     System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, <span class="string">"D:/temp/classes"</span>);</span><br><span class="line">     CglibProxy cglibProxy = <span class="keyword">new</span> CglibProxy();</span><br><span class="line">     TestService testService = cglibProxy.getProxy(TestService.class);</span><br><span class="line">     testService.sayHello();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>运行结果</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CGLIB debugging enabled, writing to 'D:/temp/classes'</span><br><span class="line">Before: public void org.chason.bytecode.TestService.sayHello()</span><br><span class="line">Hello</span><br><span class="line">After: public void org.chason.bytecode.TestService.sayHello()</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>基于CGLIB实现的动态代理相比JDK动态代理而言，无侵入型，无需实现接口。基于对字节码的修改，生成要代理类的子类，然后再子类中回调代理类的方法。但要注意CGLIB无法代理基于Final或private修饰的方法。</p>
+
+                
+<p class="pink-link-context">
+    <a href="/2018/05/27/state-pattern/" rel="next" title="状态模式">
+    上一篇：状态模式
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2018/04/22/build-own-spring/" rel="next" title="自己实现Spring">
+    下一篇：自己实现Spring
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>

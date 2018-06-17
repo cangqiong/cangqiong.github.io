@@ -1,0 +1,696 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Linux服务器定位问题 | </title>
+    <meta name="author" content="Chason">
+    
+    <meta name="description" content="记录自己的生活与学习">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Linux服务器定位问题"/>
+    <meta property="og:site_name" content="Chason&#39;s Blog.渺沧海之一粟"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Chason&#39;s Blog.渺沧海之一粟" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Chason&#39;s Blog.渺沧海之一粟</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="https://avatars0.githubusercontent.com/u/4538700?s=400&amp;u=393d7e2db39838e9b7404e8f5304d20eda75382b&amp;v=4" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Chason</p>
+                        <p class="desc">后台开发/JAVA/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/2018/">
+                    2018 <span class="right">11 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/2018/技术总结/">
+                    技术总结 <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/2018/设计/">
+                    设计 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/2018/学习/">
+                    学习 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/2018/学习/总结/">
+                    总结 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/2018/">2018</a><a class="breadcrumb" href="/categories/2018/技术总结/">技术总结</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Linux服务器定位问题</h1>
+    
+
+
+       <div style="float: right;color: #E91E63">
+    <span id="busuanzi_container_page_pv" style="display: none;">
+    阅读次数 <span id="busuanzi_value_page_pv"></span></span>
+</div>
+            </div>
+            <time class="pink-link-context" datetime="2018-06-17T12:25:25.000Z"><a href="/2018/06/17/linux-and-location-problem/">2018-06-17</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Linux/" class="chip pink lighten-1">Linux</a>
+        
+            <a href="/tags/运维/" class="chip pink lighten-1">运维</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#定位层次"><span class="section table-of-contents-text">定位层次</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#服务器层次"><span class="section table-of-contents-text">服务器层次</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#应用层次"><span class="section table-of-contents-text">应用层次</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#如何定位应用状态"><span class="section table-of-contents-text">如何定位应用状态</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#采用系统工具查看应用状态"><span class="section table-of-contents-text">采用系统工具查看应用状态</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#进一步判断应用状态"><span class="section table-of-contents-text">进一步判断应用状态</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-5"><a class="section table-of-contents-link" href="#模拟访问应用"><span class="section table-of-contents-text">模拟访问应用</span></a></li><li class="section table-of-contents-item section table-of-contents-level-5"><a class="section table-of-contents-link" href="#查看日志状态"><span class="section table-of-contents-text">查看日志状态</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#确定应用状态后，定位错误原因"><span class="section table-of-contents-text">确定应用状态后，定位错误原因</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#小技巧"><span class="section table-of-contents-text">小技巧</span></a></li></ol></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-text">总结</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <blockquote>
+<p>在后台应用中，承载后台应用的服务器基本都是Linux服务器，在后台应用的部署、运维、查错基本都要和Linux服务器打交道，这篇博客主要对工作中遇到的如何定位Linux服务器上的后台应用的出错进行总结：<strong>从哪些方面进行定位问题以及如何进行定位问题</strong>。</p>
+</blockquote>
+<h1 id="定位层次"><a href="#定位层次" class="headerlink" title="定位层次"></a>定位层次</h1><p>针对工作中后台应用遇到的问题，定位问题的层次可以分为两层：</p>
+<ol>
+<li>服务器层次；</li>
+<li>应用层次；</li>
+</ol>
+<h2 id="服务器层次"><a href="#服务器层次" class="headerlink" title="服务器层次"></a>服务器层次</h2><p>顾名思义，服务器层次，就是说查看服务器自身的问题，服务器是否处于健康状态，就像你手机里的微信突然用不了，首先检查一下手机是否处于正常状态，能不能联网，内存是否足够，是不是卡住了。在服务器这个层面出错，就可能会导致部署在服务器上的后台无法正常工作。</p>
+<p>那服务器的状态又可以分为好几个状态：</p>
+<ol>
+<li><p>CPU使用率</p>
+<p>CPU使用率是指Linux服务器上CPU的使用比率，可以使用<code>top</code>命令查看当前的CPU使用率。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai ~]# top</span><br><span class="line">top - 20:47:42 up  7:02,  2 users,  load average: 0.00, 0.01, 0.05</span><br><span class="line">Tasks:  67 total,   1 running,  66 sleeping,   0 stopped,   0 zombie</span><br><span class="line"><span class="meta">%</span>Cpu(s):  0.3 us,  0.3 sy,  0.0 ni, 99.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">KiB Mem :  1883496 total,    89012 free,   768800 used,  1025684 buff/cache</span><br><span class="line">KiB Swap:        0 total,        0 free,        0 used.   915468 avail Mem</span><br></pre></td></tr></table></figure>
+<p>如top命令执行效果，<code>%Cpu(s)</code>表示cpu使用率，<code>%us</code>：表示用户空间程序的cpu使用率，<code>%sy</code>：表示系统空间的cpu使用率，主要由内核程序使用。</p>
+</li>
+<li><p>内存状态</p>
+<p>服务器的内存会决定应用的内存，从而影响后台应用的启动或执行速度。使用<code>free</code>可以查看当前系统的内存使用情况。<code>-m</code>表示以MB为单位表示显示内存情况</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai ~]<span class="comment"># free -m</span></span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:           1839         750          72           0        1016         894</span><br><span class="line">Swap:             0           0           0</span><br></pre></td></tr></table></figure>
+<p>第二行是内存的使用情况，total:内存总数，used：已经使用的内存数；free：空闲的内存数，buff/cache：被 buffer 和 cache 使用的物理内存大小 ，available：还可以被应用程序使用的物理内存大小。 </p>
+</li>
+<li><p>网络状态</p>
+<p>服务器往往不是估计存在的，需要与其他服务器进行通信，所以网络状态也会影响服务器状态。一般网络的网络问题，可能是网络策略的问题。可以使用<code>ping</code>命令或<code>telnet</code>命令尝试访问其他服务器ip或者域名地址。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai ~]# ping baidu.com</span><br><span class="line">PING baidu.com (123.125.115.110) 56(84) bytes of data.</span><br><span class="line">64 bytes from 123.125.115.110 (123.125.115.110): icmp_seq=1 ttl=51 time=37.5 ms</span><br><span class="line">64 bytes from 123.125.115.110 (123.125.115.110): icmp_seq=2 ttl=51 time=37.6 ms</span><br><span class="line">64 bytes from 123.125.115.110 (123.125.115.110): icmp_seq=3 ttl=51 time=37.6 ms</span><br><span class="line">64 bytes from 123.125.115.110 (123.125.115.110): icmp_seq=4 ttl=51 time=37.6 ms</span><br><span class="line">--- baidu.com ping statistics ---</span><br><span class="line">4 packets transmitted, 4 received, 0% packet loss, time 3005ms</span><br><span class="line">rtt min/avg/max/mdev = 37.599/37.641/37.695/0.034 ms</span><br><span class="line">[root@xiaocanghai ~]# telnet baidu.com 80</span><br><span class="line">Trying 220.181.57.216...</span><br><span class="line">Connected to baidu.com.</span><br><span class="line">Escape character is '^]'.</span><br></pre></td></tr></table></figure>
+<p>从上面执行命令来看，能够访问百度的网址。</p>
+</li>
+<li><p>硬盘状态</p>
+<p>服务器往往会因为后台应用的增多，日志的迅速增加导致硬盘空间不够，从而导致应用无法正常执行。那采用<code>df</code>命令可以查看服务器的硬盘状态。加上<code>-h</code>是以可读性较高的方式进行显示服务器硬盘状态。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai ~]# df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/vda1        40G  5.4G   32G  15% /</span><br><span class="line">devtmpfs        911M     0  911M   0% /dev</span><br><span class="line">tmpfs           920M     0  920M   0% /dev/shm</span><br><span class="line">tmpfs           920M  328K  920M   1% /run</span><br><span class="line">tmpfs           920M     0  920M   0% /sys/fs/cgroup</span><br><span class="line">tmpfs           184M     0  184M   0% /run/user/0</span><br></pre></td></tr></table></figure>
+<p>主要看<code>Use%</code>，看是否有接近90%的，如果有的话，说明得要开始清理磁盘了。</p>
+</li>
+<li><p>其他状态</p>
+<p>服务器还有其他状态可能会影响应用的状态，比如日期，时区，文件的执行权限，</p>
+<p>其实这里可以展开那就很多篇幅，下面列几个常有的命令吧。</p>
+<ul>
+<li><code>ls -ltr</code>按修改时间列出文件和文件夹详细信息 。使用这个命令能够看到文件的详细信息并且按修改时间顺序排序，可以清楚的看到最新修改文件的顺序。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x.  2 root root  4096 Nov  5  2016 srv</span><br><span class="line">drwxr-xr-x.  2 root root  4096 Nov  5  2016 opt</span><br><span class="line">drwxr-xr-x.  2 root root  4096 Nov  5  2016 mnt</span><br><span class="line">drwxr-xr-x.  2 root root  4096 Nov  5  2016 media</span><br><span class="line">drwx------.  2 root root 16384 Aug 18  2017 lost+found</span><br><span class="line">lrwxrwxrwx.  1 root root     7 Aug 18  2017 bin -&gt; usr/bin</span><br><span class="line">lrwxrwxrwx.  1 root root     9 Aug 18  2017 lib64 -&gt; usr/lib64</span><br><span class="line">lrwxrwxrwx.  1 root root     7 Aug 18  2017 lib -&gt; usr/lib</span><br><span class="line">lrwxrwxrwx.  1 root root     8 Aug 18  2017 sbin -&gt; usr/sbin</span><br><span class="line">drwxr-xr-x. 13 root root  4096 Aug 18  2017 usr</span><br><span class="line">drwxr-xr-x.  3 root root  4096 Oct  4  2017 home</span><br><span class="line">drwxr-xr-x. 19 root root  4096 Oct  5  2017 var</span><br><span class="line">drwxr-xr-x   3 root root  4096 Oct 10  2017 cang</span><br><span class="line">drwxr-xr-x   3 root root  4096 Oct 22  2017 applog</span><br><span class="line">dr-xr-xr-x.  5 root root  4096 Nov 12  2017 boot</span><br><span class="line">drwxr-xr-x   4 root root  4096 Dec 18 23:02 appdata</span><br><span class="line">dr-xr-x---. 18 root root  4096 Apr 15 16:16 root</span><br><span class="line">drwxr-xr-x. 83 root root  4096 Jun 17 13:44 etc</span><br><span class="line">dr-xr-xr-x  81 root root     0 Jun 17 13:44 proc</span><br><span class="line">drwxr-xr-x  20 root root  3040 Jun 17 13:45 dev</span><br><span class="line">drwxr-xr-x  23 root root   660 Jun 17 21:17 run</span><br><span class="line">dr-xr-xr-x  13 root root     0 Jun 17 21:44 sys</span><br><span class="line">drwxrwxrwt. 20 root root  4096 Jun 17 22:47 tmp</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>date</code>查看当前系统时间</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai /]# date  # 输出当前时间</span><br><span class="line">Sun Jun 17 22:54:46 CST 2018</span><br><span class="line">[root@xiaocanghai /]# date +"%Y-%m-%d %H:%m:%S" # 按指定格式输出当前时间</span><br><span class="line">2018-06-17 22:06:47</span><br><span class="line">[root@xiaocanghai /]# date +'%Z %z'  # 查看时区</span><br><span class="line">CST +0800</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="应用层次"><a href="#应用层次" class="headerlink" title="应用层次"></a>应用层次</h2><p>  从应用这个级别来定位出现的问题，又可以以应用状态进行区分进行查找问题。</p>
+<p>  应用状态可以分为这几种：<strong>应用终止</strong>、<strong>应用假死</strong>、<strong>应用运行中</strong>。其中应用假死是应用运行中的一种特殊状态，进程没有终止，但访问没有反应，日志也没有输出，这种情况比较难定位问题。</p>
+<p>  那如何知道应用处于什么状态呢？下面进行说明。</p>
+<h3 id="如何定位应用状态"><a href="#如何定位应用状态" class="headerlink" title="如何定位应用状态"></a>如何定位应用状态</h3><p>  Linux定位服务器状态一般有以下几种方法：</p>
+<h4 id="采用系统工具查看应用状态"><a href="#采用系统工具查看应用状态" class="headerlink" title="采用系统工具查看应用状态"></a>采用系统工具查看应用状态</h4><p>  1.<code>systemctl</code>或者<code>service</code>查看应用状态，命令格式：</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl  status &lt;app-name&gt;</span><br><span class="line">service &lt;app-name&gt; status</span><br></pre></td></tr></table></figure>
+<p>  例子</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai /]# systemctl status nginx</span><br><span class="line">● nginx.service - nginx - high performance web server</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Sun 2018-06-17 15:20:04 CST; 7h ago</span><br><span class="line">     Docs: http://nginx.org/en/docs/</span><br><span class="line"> Main PID: 1994 (nginx)</span><br><span class="line">   CGroup: /system.slice/nginx.service</span><br><span class="line">           ├─1994 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf</span><br><span class="line">           └─4226 nginx: worker process</span><br><span class="line"></span><br><span class="line">Jun 17 15:20:04 xiaocanghai systemd[1]: Starting nginx - high performance web server...</span><br><span class="line">Jun 17 15:20:04 xiaocanghai nginx[1990]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span><br><span class="line">Jun 17 15:20:04 xiaocanghai nginx[1990]: nginx: configuration file /etc/nginx/nginx.conf test is successful</span><br><span class="line">Jun 17 15:20:04 xiaocanghai systemd[1]: Failed to read PID from file /var/run/nginx.pid: Invalid argument</span><br><span class="line">Jun 17 15:20:04 xiaocanghai systemd[1]: Started nginx - high performance web server.</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p><code>jps</code>。JVM自带的Java 进程查看工具可以查看正在运行的Java进程。</p>
+</li>
+<li><p><code>ps</code>。使用<code>jps</code>命令有时候不能准确地看到Java进程，这使用要采用<code>ps</code>命令了，其实<code>jps</code>相当于<code>ps</code>命令的Java定制版。<code>ps</code>更加强大能够查看服务器中所有进程状态。直接用<code>ps -ef</code>能够列出所有的进程，为了更加精确地定位进程，可以用<code>ps -ef | grep &lt;process-info&gt;</code>查找进程。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai /]# ps -ef | grep jenkins</span><br><span class="line">root      3044     1  0 16:25 ?        00:01:37 java -jar jenkins.war --httpPort=8091</span><br><span class="line">root      9435  8904  0 23:21 pts/2    00:00:00 grep --color=auto jenkins</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p><code>netstat -tunlp | grep &lt;port&gt;</code>。有时候可能只知道应用的端口，想查看该应用状态，可以用netstat命令进行查看。可以查到对应应用的PID与应用名称</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai /]# netstat -tunlp | grep 22</span><br><span class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1428/sshd</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="进一步判断应用状态"><a href="#进一步判断应用状态" class="headerlink" title="进一步判断应用状态"></a>进一步判断应用状态</h4><p>使用系统自带的命令可以知道进程有没有在执行，但进程在执行，仍有可能处于假死状态，如何判断应用的真实状态呢？想知道应用有没有在正常运行，直接访问一下应用，看日志，看返回结果，这是最常用也是最有效的方法。</p>
+<h5 id="模拟访问应用"><a href="#模拟访问应用" class="headerlink" title="模拟访问应用"></a>模拟访问应用</h5><p>  Linux自带的一些工具可以模拟访问应用，比如<code>curl</code>命令，能够模拟http请求，当然还有其他附加功能，本文所讲的模拟http请求只是它的一个小模块。</p>
+<ol>
+<li><p>模拟GET请求</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai /]# curl -l baidu.com</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;meta http-equiv="refresh" content="0;url=http://www.baidu.com/"&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li>模拟POST请求</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai /]# curl -d "wd=test" "https://www.baidu.com"</span><br></pre></td></tr></table></figure>
+<h5 id="查看日志状态"><a href="#查看日志状态" class="headerlink" title="查看日志状态"></a>查看日志状态</h5><p>使用<code>tail</code>命令查看日志，<code>tail</code>就是尾巴的意思，就是说查看文件的尾部，<code>tail -nf</code>命令-n表示输出文件尾部n行数据，-f表示显示文件最新追加的内容。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaocanghai conf.d]# tail -5f /var/log/nginx/nginx.access.log</span><br><span class="line">203.208.60.215 - - [17/Jun/2018:22:16:28 +0800] "GET /blog/query/ HTTP/1.1" 404 126 "https://www.xiaocanghai.com/blog-show.html?blogId=" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36" "-"</span><br><span class="line">203.208.60.215 - - [17/Jun/2018:22:16:28 +0800] "GET /blog-list.html HTTP/1.1" 404 143 "https://www.xiaocanghai.com/blog-show.html?blogId=" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36" "-"</span><br><span class="line">203.208.60.214 - - [17/Jun/2018:22:16:45 +0800] "OPTIONS /blog/queryBlogList?pageNum=1&amp;pageSize=10 HTTP/1.1" 200 0 "http://www.xiaocanghai.com/" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36" "-"</span><br><span class="line">203.208.60.214 - - [17/Jun/2018:22:16:46 +0800] "GET /blog-list.html HTTP/1.1" 404 143 "http://www.xiaocanghai.com/" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36" "-"</span><br><span class="line">74.82.47.3 - - [17/Jun/2018:23:40:37 +0800] "GET / HTTP/1.1" 200 5723 "-" "-" "-"</span><br></pre></td></tr></table></figure>
+<p>如果访问应用能够实时看到日志在输出，那说明应用状态是运行中。但应用访问没有日志输出，且并没有返回结果，说明是处于假死状态。</p>
+<h3 id="确定应用状态后，定位错误原因"><a href="#确定应用状态后，定位错误原因" class="headerlink" title="确定应用状态后，定位错误原因"></a>确定应用状态后，定位错误原因</h3><p>确定应用状态后，可以进一步定位错误的细节。一般而言定位错误描述与错误原因，基本上就是查看日志，搜索日志。那查看日志的时候，一般不能用<code>vi/vim</code>命令，因为采用这个命令会占用CPU，从而影响应用本身。可以使用<code>view</code>/<code>less</code>/<code>more</code>等查看命令进行查看/搜索日志。</p>
+<h4 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h4><p>定位错误原因，一般可以先采用<code>grep</code>搜索日志文件，根据报错的相关信息，如用户的证件号、session id、错误提示进行搜索日志。先根据比较泛的信息搜索出所有的相关信息，然后再根据更细节的信息进行搜索。比如查询nginx日志，可以直接用404搜索日志文件，然后可以在这些信息找到要定位的请求，再用请求信息进行搜索。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@xiaocanghai conf.d]# grep '404' /var/log/nginx/nginx.access.log</span><br><span class="line">47.96.231.74 - - [17/Jun/2018:17:00:55 +0800] "HEAD /redirect.php HTTP/1.1" 404 0 "-" "-" "-"</span><br><span class="line">203.208.60.216 - - [17/Jun/2018:18:37:30 +0800] "GET /robots.txt HTTP/1.1" 404 0 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" "-"</span><br><span class="line">203.208.60.215 - - [17/Jun/2018:18:38:08 +0800] "GET /blog-list.html HTTP/1.1" 404 143 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" "-"</span><br><span class="line">95.163.255.7 - - [17/Jun/2018:18:55:43 +0800] "GET /robots.txt HTTP/1.0" 404 114 "-" "Mozilla/5.0 (compatible; Linux x86_64; Mail.RU_Bot/2.0; +http://go.mail.ru/help/robots)" "-"</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文主要讲了如何在Linux服务器上定位应用出现的错误或异常，总体原则是：<strong>先总体，后局部</strong>，先查看应用与服务器的当前状态，然后进一步查看应用日志定位错误细节。一般查问题的顺序是：先查看应用状态，再看应用日志定位细节，再查看服务器状态。之所以把服务器状态放在最后，是因为大部分应用报错是自身的问题。       </p>
+
+                
+
+
+<p class="pink-link-context">
+    <a href="/2018/06/04/template-method/" rel="next" title="策略模式">
+    下一篇：策略模式
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="https://weibo.com/2776809852" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/cangqiong" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://www.importnew.com/" target="_blank">ImportNew：Java技术分享网站</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Hexo主题raytaylorlin</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2018 cangqiong.github.io, All rights reserved. 
+<i class="fa fa fa-heart"></i>
+            <p class="right" style="margin-top: 0;">
+            <span id="busuanzi_container_site_uv" style="display:none">
+            您好，您是本站点的第 <span id="busuanzi_value_site_uv" style="color: yellow;"></span> 位访客，祝您生活工作愉快
+            </span></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-search').append('<span class="new badge green-light"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+</html>

@@ -7,7 +7,7 @@
 
     
 
-    <title>Open api | </title>
+    <title>策略模式 | </title>
     <meta name="author" content="Chason">
     
     <meta name="description" content="记录自己的生活与学习">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="策略模式"/>
     <meta property="og:site_name" content="Chason&#39;s Blog.渺沧海之一粟"/>
 
     
@@ -217,30 +217,103 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（标签）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
         
+            
+    
+    
+    <a class="breadcrumb" href="/categories/2018/">2018</a><a class="breadcrumb" href="/categories/2018/技术总结/">技术总结</a>
+
 
         
-            <a class="breadcrumb" href="/tags/Open-api/">Open api</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>策略模式</h1>
+    
 
 
-    <div class="collection mt-0">
+       <div style="float: right;color: #E91E63">
+    <span id="busuanzi_container_page_pv" style="display: none;">
+    阅读次数 <span id="busuanzi_value_page_pv"></span></span>
+</div>
+            </div>
+            <time class="pink-link-context" datetime="2018-06-03T16:27:25.000Z"><a href="/2018/06/04/template-method/">2018-06-04</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
         
-            <a href="/2018/03/11/open-api-security/" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-03-11T12:50:25.000Z">2018-03-11</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Open api安全设计与实现
-            </a>
+            <a href="/tags/设计模式/" class="chip pink lighten-1">设计模式</a>
         
     </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#场景"><span class="section table-of-contents-text">场景</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#例子"><span class="section table-of-contents-text">例子</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#钩子方法"><span class="section table-of-contents-text">钩子方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-text">总结</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <blockquote>
+<p>模板方法(Template Method )顾名思义，是指父类提供一个模板或者说框架，然后再子类中填充具体的内容。在模板方法中父类定义或者说抽象出一套算法的流程或者说步骤，然后子类负责实现一个或多个步骤，并且可以在不改变算法的架构的基础上，改变算法的某些步骤。       </p>
+</blockquote>
+<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>模板方法针对的场景其实是那些可以归纳出步骤的事情，但步骤的具体内容有可以不同。针对这种事情采用面向对象的抽象出这些步骤，定义成模板方法。</p>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>比如人的一生，就可以抽象出几个步骤：1、出生；2、生活；3、死亡。相信这是绝大部分人的人生模板，人的一生都是这些步骤进行的，然后可能人生的步骤可能有些不一样，可能有些人出生在医院中，有些人出生在家里，甚至是野外（比如郭靖），生活同样大家都生活得不一样。上天对人生的步骤就是如下进行安排的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractLife</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 模板方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">living</span><span class="params">()</span></span>&#123;</span><br><span class="line">        born();</span><br><span class="line">        live();</span><br><span class="line">        death();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">born</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">live</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">death</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Everyone will die"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该类定义了四个方法，其中<code>living</code>方法是模板方法，<code>death</code>方法是私有的方法，因为这个方法是通用的，所以无需子类重写，其中<code>born</code>与<code>live</code>方法需要子类重写，根据子类自身的内容去重写。还有一个<code>final</code>定义的<code>living</code>方法，这个方法就是模板方法，定义方法执行的步骤。</p>
+<p>现在有了上面抽象类与模板方法，就可以对<code>AbstractLife</code>进行继承，并重写<code>born</code>与<code>live</code>方法，然后使用该实现类的对象调用<code>living</code>方法，即可完成人一生的步骤。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodLife</span> <span class="keyword">extends</span> <span class="title">AbstractLife</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">born</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Born at own home"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">live</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Take on your own responsibility"</span>);</span><br><span class="line">        System.out.println(<span class="string">"Do some good thing"</span>);</span><br><span class="line">        System.out.println(<span class="string">"Do some interest"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AbstractLife life = <span class="keyword">new</span> GoodLife();</span><br><span class="line">        life.living();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"><span class="comment">//Born at own home</span></span><br><span class="line"><span class="comment">//Take on your own responsibility</span></span><br><span class="line"><span class="comment">//Do some good thing</span></span><br><span class="line"><span class="comment">//Do some interest</span></span><br><span class="line"><span class="comment">//Everyone will die</span></span><br></pre></td></tr></table></figure>
+<h1 id="钩子方法"><a href="#钩子方法" class="headerlink" title="钩子方法"></a>钩子方法</h1><p>模板方法定义了算法的执行步骤，但如果某些步骤或者说步骤顺序对于某些子类来说不执行或者说执行步骤不一样，这就要用到钩子方法了，钩子方法是定义在抽象类中的一种方法，子类可以覆盖它，通过覆盖钩子方法可以让子类改变是否执行算法步骤，或者改变步骤顺序。钩子方法本质提供一种可以让子类可以进行对模板方法进行变通的方法。</p>
+<p>还是以上面的例子。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractLife</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 模板方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">living</span><span class="params">()</span></span>&#123;</span><br><span class="line">        born();</span><br><span class="line">        live();</span><br><span class="line">        <span class="keyword">if</span>(isDreamWorld())&#123;</span><br><span class="line">            death();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">born</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">live</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">death</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Everyone will die"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 钩子函数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">boolean</span> <span class="title">isDreamWorld</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>子类实现钩子方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodLife</span> <span class="keyword">extends</span> <span class="title">AbstractLife</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">born</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Born at own home"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">live</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Take on your own responsibility"</span>);</span><br><span class="line">        System.out.println(<span class="string">"Do some good thing"</span>);</span><br><span class="line">        System.out.println(<span class="string">"Do some interest"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">isDreamWorld</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>模板方法是基于面向对象的封装方法，将算法的执行步骤进行封装，定义一个包含模板方法的抽象类，通常设置模板方法为<code>final</code>，具体的子类可以实现抽象类中某些具体步骤，不同的子类拥有不同的实现。模板方法还提供一个钩子方法用于子类一定程度的改变算法执行步骤。</p>
+
+                
+<p class="pink-link-context">
+    <a href="/2018/06/17/linux-and-location-problem/" rel="next" title="Linux服务器定位问题">
+    上一篇：Linux服务器定位问题
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2018/05/27/state-pattern/" rel="next" title="状态模式">
+    下一篇：状态模式
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
