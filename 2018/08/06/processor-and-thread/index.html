@@ -7,7 +7,7 @@
 
     
 
-    <title>RESTful API介绍 | </title>
+    <title>进程与线程 | </title>
     <meta name="author" content="Chason">
     
     <meta name="description" content="记录自己的生活与学习">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="RESTful API介绍"/>
+    <meta property="og:title" content="进程与线程"/>
     <meta property="og:site_name" content="Chason&#39;s Blog.渺沧海之一粟"/>
 
     
@@ -224,7 +224,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/2018/">2018</a><a class="breadcrumb" href="/categories/2018/技术总结/">技术总结</a>
+    <a class="breadcrumb" href="/categories/2018/">2018</a><a class="breadcrumb" href="/categories/2018/学习/">学习</a><a class="breadcrumb" href="/categories/2018/学习/总结/">总结</a>
 
 
         
@@ -241,7 +241,7 @@
             <div class="article-title">
                 
     
-        <h1>RESTful API介绍</h1>
+        <h1>进程与线程</h1>
     
 
 
@@ -250,7 +250,7 @@
     阅读次数 <span id="busuanzi_value_page_pv"></span></span>
 </div>
             </div>
-            <time class="pink-link-context" datetime="2018-03-17T14:20:25.000Z"><a href="/2018/03/17/restful-api/">2018-03-17</a></time>
+            <time class="pink-link-context" datetime="2018-08-06T15:55:25.000Z"><a href="/2018/08/06/processor-and-thread/">2018-08-06</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -260,64 +260,52 @@
             
     <div class="tags-row">
         
-            <a href="/tags/api/" class="chip pink lighten-1">api</a>
+            <a href="/tags/操作系统/" class="chip pink lighten-1">操作系统</a>
         
     </div>
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#REST理解"><span class="section table-of-contents-text">REST理解</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#HTTP方法"><span class="section table-of-contents-text">HTTP方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#RESTful-API"><span class="section table-of-contents-text">RESTful API</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#RESTful-API-常见设计错误"><span class="section table-of-contents-text">RESTful API 常见设计错误</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#RESTful-API具体实例"><span class="section table-of-contents-text">RESTful API具体实例</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-text">总结</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#程序"><span class="section table-of-contents-text">程序</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#进程"><span class="section table-of-contents-text">进程</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#线程"><span class="section table-of-contents-text">线程</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#进程与线程"><span class="section table-of-contents-text">进程与线程</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Java与进程"><span class="section table-of-contents-text">Java与进程</span></a></li></ol>
 </div>
 
 
             <div class="entry pink-link-context">
-                <p>REST，刚接触这个词的时候，还以为是reset，后来又以为是rest(休息)，后来才知道它是英文“Representational State Transfer”的缩写，取其首字母得到REST。这段英文的翻译可以为“表现层状态转化”。它是Roy Thomas Fielding博士于2000年在他的博士论文中提出来的一种万维网软件架构风格。</p>
-<h1 id="REST理解"><a href="#REST理解" class="headerlink" title="REST理解"></a>REST理解</h1><p>刚听这个词是不是很蒙，即使看了上面的介绍，是不是也觉得表现层状态转化是什么鬼？<br>那下面我进行详细解释<br>表现层（Representation）是指资源（Resources）的表现层。资源，其实就是网络上的可以认知的资源，比如文档、音乐、视频。可以通过URI(统一资源定位符)进行访问。</p>
-<p>状态转化是指客户端与服务端的互动过程中，这必然涉及到数据与状态的变化。</p>
-<p>RESET架构究竟是什么呢？</p>
+                <h1 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h1><p>相信程序员最常和程序(<code>Program</code>)打交道了，程序它就相当于指示计算机的指令序列，一般用某种特定的编程语言编写。类比一下，程序就像一个用中文写的（银耳羹）菜谱：</p>
+<blockquote>
 <ol>
-<li>每个URI标识互联网上的资源</li>
-<li>连接是无状态的</li>
-<li>客户端通过HTTP常用方法，对服务器端资源进行操作，实现”表现层状态转化”。</li>
+<li>用冷水浸泡银耳，清洗干净；</li>
+<li>加入清水，银耳，红枣，大火烧开，然后小火慢熬；</li>
+<li>放入适量冰糖，待冰糖溶化，就已经完成可以食用了。</li>
 </ol>
-<h1 id="HTTP方法"><a href="#HTTP方法" class="headerlink" title="HTTP方法"></a>HTTP方法</h1><p>HTTP总共定义了八个方法，最常见的有4个，而设计RESTful接口的时候，应该遵循“安全性”与“幂等性”的要求</p>
-<ul>
-<li>安全性：无论请求多少次，都不会改变资源的状态。比如GET操作，无论执行多少遍，都不会改变资源的状态。所以对于GET类API，在编写应用端代码时，切记要尽可能避免出现删除或者更新数据的逻辑。</li>
-<li>幂等性：无论是执行一次，还是执行多次，效果是等价的，比如 DELETE，PUT操作。以PUT操作为例，更新一次和更新多次，实际结果都是更新后的结果了。<br>具有安全性的方法：GET、HEAD、OPTIONS<br>具有幂等性的方法：GET、PUT、DELETE</li>
-</ul>
-<blockquote>
-<p>GET(SELECT) -&gt; 查询操作,从服务器中取出资源<br>POST(CREATE) -&gt; 添加操作，在服务器新建资源<br>PUT(UPDATE) -&gt; 在服务器更新资源（客户端提供改变后的完整资源）。<br>PATCH(UPDATE) -&gt; 服务器更新资源（客户端提供改变的属性）<br>DELETE(DELETE) -&gt; 从服务器删除资源<br>另外两个不常用<br>HEAD -&gt; 获取资源的元数据。<br>OPTIONS -&gt; 获取信息，关于资源的哪些属性是客户端可以改变的。</p>
 </blockquote>
-<h1 id="RESTful-API"><a href="#RESTful-API" class="headerlink" title="RESTful API"></a>RESTful API</h1><p>REST是一种软件架构风格，并不是一种具体的标准。而在实际的后台开发过程中，逐渐变成面向接口进行开发，而为了让接口更加便于理解，更加规范，更加便于规范，业界逐渐开始采用REST风格。于是乎产生了具有REST风格的web API，而大家称之为RESTful API。</p>
-<p>为了区分一般API与RESTful API,下面我先给出一个一般API，再给出RESTful API。</p>
+<p>但菜谱是人类才能理解的动作序列，而程序是计算机能理解的动作序列（当然程序需要经过一系列的编译和链接转换成计算机能识别的01序列）。下面就是用Java语言写的程序，它的意思是让计算机执行打印“Hello World!”字符串的动作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但程序需要执行才能执行里面给计算机描述的动作序列，否则就是一段文本，就像菜谱就是一张纸一样。程序没执行之前，就是保存在硬盘中的文本。</p>
+<p>程序一般是采用尽量让人类理解的英文名词来书写，实际上计算机只能识别01序列，从上面那让受过训练人看懂的代码到实际执行的01代码，中间经过多层转换处理。</p>
+<p>执行程序时，必须把程序加载到内存中执行，因为CPU只能从内存中读取数据与指令。<code>数据</code>是可以被定义为程序处理的信息，比如mp3文件，qq离线数据等。</p>
+<p>软件（<code>Software</code>），软件一般从狭义可以用下面的公式来说明</p>
 <blockquote>
-<p>POST <a href="http://localhost:8080/createUser" target="_blank" rel="noopener">http://localhost:8080/createUser</a><br>GET <a href="http://localhost:8080/getUser?id=123" target="_blank" rel="noopener">http://localhost:8080/getUser?id=123</a></p>
+<p>软件 = 程序+数据+文档 </p>
 </blockquote>
-<p>看完是不是觉得很熟悉，下面给出对应的RESTful 接口</p>
-<blockquote>
-<p>POST <a href="http://localhost:8080/users" target="_blank" rel="noopener">http://localhost:8080/users</a><br>GET <a href="http://localhost:8080/users/123" target="_blank" rel="noopener">http://localhost:8080/users/123</a></p>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p>程序被包含在软件中被执行，程序会被加载到内存中，由CPU负责进行执行，然后在这个执行过程，则产生了进程（<code>process</code>），<strong>进程本质是程序的一次的执行</strong>。比如点击网易云音乐软件，本质是执行编译好的网易云程序，只不过对于用户是黑核的，无感知的。</p>
+<p>进程是系统进行资源分配基本单位。一般进程用来完成一个任务。但如果有多个程序执行的话，就会产生多进程。因为一个cpu在同一时间只能执行一个进程，操作系统会基于调度算法调度进程，比如基于时间片的轮询。但是又产生了一个问题，共享内存的话，会产出各种问题。早起的计算机系统，程序访问的的地址空间是真实的内存空间。当有多个进程同时执行时，先将一个进程全部加载内存，然后在剩下的内存空间分配给其他问题。但是因为地址是连续的，A进程可以修改B进程的数据。为了解决这个问题，产生了<code>虚拟地址</code>这个概念。操作系统给每个进程创建一个完全一样的虚拟地址，基于页表机制将虚拟机制映射成实际物理地址，完成了多进程的物理地址隔离，任何一个进程不会干扰其他进程的执行。</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>在现代程序开发中，已经不用关注底层内存的分配与CPU的调度了。但是又有问题出现了：有一些任务，需要共享同样的物理内存来，比如网易云音乐程序中，一些程序播放音乐，另一些程序下载音乐，这些程序都共享同一物理内存，这样能节省进程上下文切换的开销。这样就产生了线程了。<strong>线程是操作系统能够进行运算调度的最小单元，它是进程中的实际运行单元</strong>。一条线程是进程中单一顺序的控制流，一个进程可以并发多个线程。</p>
+<h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><blockquote>
+<p>进程是一个程序的执行，是资源分配的最小单元。</p>
+<p>线程是操作系统进行调度的最小单元，是进程中的实际运行单元。</p>
+<p>进程是一个容器；</p>
+<p>线程是容器中的工作单位。</p>
 </blockquote>
-<h1 id="RESTful-API-常见设计错误"><a href="#RESTful-API-常见设计错误" class="headerlink" title="RESTful API 常见设计错误"></a>RESTful API 常见设计错误</h1><p><strong>URI包含动词。</strong>这是最常见的错误。RESTful 接口应该是采用对应的HTTP动词作为操作，而后面的URL链接标识具体的资源，它表示资源的状态转移。”资源”表示一种实体，所以应该是名词，URI不应该有动词，动词应该放在HTTP协议中。<br>举例来说，某个URI是/users/show/1，其中show是动词，这个URI就设计错了，正确的写法应该是/posts/1，然后用GET方法表示show。</p>
-<p><strong>使用名词单数</strong><br>为了不混淆名词的单复数。保持简单，只用复数名词定义所有资源。<br>/cars 代替 /car<br>/users 代替 /user<br>/products 代替 /product<br>/settings 代替 /settings</p>
-<p><strong>名词使用驼峰模式或眼镜蛇模式</strong>。资源名称应该尽量采用小写或使用”-“进行连接<br>/product-name 代替 /productName</p>
-<h1 id="RESTful-API具体实例"><a href="#RESTful-API具体实例" class="headerlink" title="RESTful API具体实例"></a>RESTful API具体实例</h1><p>RESTful API常见路径为：<strong>/版本/模块/资源/{标识}/集合</strong>。<br>下面是具体样例</p>
-<blockquote>
-<p>/user/{uid}/frends -&gt; 好友列表<br>/user/{uid}/followers -&gt; 关注列表<br>GET /tickets # 获取ticket列表<br>GET /tickets/12 # 查看某个具体的ticket<br>POST /tickets # 新建一个ticket<br>PUT /tickets/12 # 更新ticket 12.<br>DELETE /tickets/12 #删除ticekt 12  </p>
-</blockquote>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实RESTful API就是采用REST架构风格的API，便于理解与规范开发。而REST架构风格就是使用HTTP名词作为操作，而操作的对象是URL对应的资源。</p>
+<p>进程包含多个线程。不同进程之前因为操作的是虚拟地址，天然是独立的，如果需要多进程通信，需要采取措施。而多线程天然是共享数据的，因为都在同一内存地址中，所以为了并发操作，可能需要采取一下同步措施，防止出现并发问题。</p>
+<h1 id="Java与进程"><a href="#Java与进程" class="headerlink" title="Java与进程"></a>Java与进程</h1><p>一个Java类执行时，产生一个进程，而进程内部可以包含多个线程，默认都有一个主线程。比如静态Main方法执行产生的线程。使用<code>jps</code>命令可以查看当前系统执行的Java进程。而<code>Jstack</code>可以查看Java的执行线程。</p>
 
                 
-<p class="pink-link-context">
-    <a href="/2018/03/25/java-and-proxy/" rel="next" title="Java代理">
-    上一篇：Java代理
-  </a>
-</p>
-
 
 
 <p class="pink-link-context">
-    <a href="/2018/03/11/open-api-security/" rel="next" title="Open api安全设计与实现">
-    下一篇：Open api安全设计与实现
+    <a href="/2018/07/23/MySQL-theory/" rel="next" title="MySQL原理">
+    下一篇：MySQL原理
   </a>
 </p>
 
