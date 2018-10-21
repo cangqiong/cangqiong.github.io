@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="https://cangqiong.github.io">
   <title>JVM介绍 | Chason&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JVM介绍学过Java的程序员相信都知道Java的“一次编译，到处运行”，这是因为Java的半编译半解释特性，将Java源代码编译成与平台无关的字节码，然后解释运行Java字节码。负责执行Java字节码的就是JVM(Java Virtual Machine)。 “Java is not platform-independent, it is the platform.” C++之父曾经这么评价过J">
+  <meta name="description" content="JVM介绍学过Java的程序员相信都知道Java的“一次编译，到处运行”，这是因为Java的半编译半解释特性，将Java源代码编译成与平台无关的字节码，然后解释运行Java字节码。负责执行Java字节码的就是JVM(Java Virtual Machine)。“Java is not platform-independent, it is the platform.” C++之父曾经这么评价过Ja">
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM介绍">
 <meta property="og:url" content="https://cangqiong.github.io/2018/09/09/JVM-memory-model/index.html">
 <meta property="og:site_name" content="Chason&#39;s Blog">
-<meta property="og:description" content="JVM介绍学过Java的程序员相信都知道Java的“一次编译，到处运行”，这是因为Java的半编译半解释特性，将Java源代码编译成与平台无关的字节码，然后解释运行Java字节码。负责执行Java字节码的就是JVM(Java Virtual Machine)。 “Java is not platform-independent, it is the platform.” C++之父曾经这么评价过J">
+<meta property="og:description" content="JVM介绍学过Java的程序员相信都知道Java的“一次编译，到处运行”，这是因为Java的半编译半解释特性，将Java源代码编译成与平台无关的字节码，然后解释运行Java字节码。负责执行Java字节码的就是JVM(Java Virtual Machine)。“Java is not platform-independent, it is the platform.” C++之父曾经这么评价过Ja">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="c:/Users/cang/Downloads/553px-Java_virtual_machine_architecture.svg.png">
 <meta property="og:image" content="c:/Users/cang/Desktop/JVM内存结构.png">
@@ -22,7 +22,7 @@
 <meta property="og:updated_time" content="2018-09-09T15:21:18.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM介绍">
-<meta name="twitter:description" content="JVM介绍学过Java的程序员相信都知道Java的“一次编译，到处运行”，这是因为Java的半编译半解释特性，将Java源代码编译成与平台无关的字节码，然后解释运行Java字节码。负责执行Java字节码的就是JVM(Java Virtual Machine)。 “Java is not platform-independent, it is the platform.” C++之父曾经这么评价过J">
+<meta name="twitter:description" content="JVM介绍学过Java的程序员相信都知道Java的“一次编译，到处运行”，这是因为Java的半编译半解释特性，将Java源代码编译成与平台无关的字节码，然后解释运行Java字节码。负责执行Java字节码的就是JVM(Java Virtual Machine)。“Java is not platform-independent, it is the platform.” C++之父曾经这么评价过Ja">
 <meta name="twitter:image" content="c:/Users/cang/Downloads/553px-Java_virtual_machine_architecture.svg.png">
   
     <link rel="alternative" href="/atom.xml" title="Chason&#39;s Blog" type="application/atom+xml">
@@ -190,41 +190,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JVM介绍"><a href="#JVM介绍" class="headerlink" title="JVM介绍"></a>JVM介绍</h1><p>学过Java的程序员相信都知道Java的“一次编译，到处运行”，这是因为Java的半编译半解释特性，将Java源代码编译成与平台无关的字节码，然后解释运行Java字节码。负责执行Java字节码的就是JVM(Java Virtual Machine)。</p>
-<p><strong>“Java is not platform-independent, it is the platform.”</strong> C++之父曾经这么评价过Java。个人理解是说Java它自身就是一个平台，而这个平台就是JVM。</p>
-<blockquote>
-<p>JVM可以理解成一个抽象的计算机，有自己的硬件架构，如堆栈，处理器等，还有自己的指令集。JVM屏蔽与具体操作系统的操作细节，Java程序只需生成在JVM上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。</p>
-</blockquote>
-<p>所以可以这么说：<strong>Java是平台无关的，而JVM是平台有关的</strong>，每个操作系统对于JVM的具体实现方式都不同。</p>
-<p><img src="C:\Users\cang\Downloads\553px-Java_virtual_machine_architecture.svg.png" alt="不同系统的JVM"></p>
-<h1 id="JVM内存区域"><a href="#JVM内存区域" class="headerlink" title="JVM内存区域"></a>JVM内存区域</h1><p>JVM虽然有很多不同实现：如Oracle的<strong>HotSpot VM</strong>与IBM的<strong>J9</strong>，但最流行的还是Oracle的HotSpot。JVM实现不同，但是还是同一套技术规范的。下图为JVM的内存结构划分：</p>
-<p><img src="C:\Users\cang\Desktop\JVM内存结构.png" alt="JVM数据内存模型"></p>
-<h1 id="JVM结构介绍"><a href="#JVM结构介绍" class="headerlink" title="JVM结构介绍"></a>JVM结构介绍</h1><p>如上图所示，JVM内存数据模型，分成：运行时数据区，执行引擎与本地方法接口，还有最后一部分：直接内存。直接内存是指JVM的堆外内存，它不在JVM内存模型中，再NIO类中，可以使用Native函数直接分配堆外内存，直接对内存进行操作。</p>
-<h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>运行时数据区是JVM在执行程序中所管理的内存。它们有不同的用途，以及创建与销毁时间。比如线程私有的内存空间：程序计数器、Java虚拟机栈，本地方法栈。所有线程共享，所有对象实例以及数组都在该区域分配内存的堆，还有存储类信息、常量、静态变量等数据的方法区。</p>
-<p>１. <strong>程序计数器</strong></p>
-<p> 程序计数器是比较小的内存区域，可以看出当前线程所执行的字节码的行号指示器。当线程需要获取执行下一条指令时，通过改变程序计数器来实现。应为程序计数器是线程私有的，所以各个计数器互不影响。程序计数器记录的是字节码指令的地址，如果执行的是<code>Native</code>方法，则计算器为空。</p>
-<ol start="2">
-<li><strong>Java虚拟机</strong></li>
-</ol>
-<p>描述的Java方法执行的内存模型：每个方法被执行时，都会创建一个栈帧，用于存储局部变量表、操作数栈、动态链接，方法出入口等。其中局部变量表存放8中基本类型(<code>boolean</code>、<code>byte</code>、<code>char</code>、<code>short</code>、<code>int</code>、<code>float</code>、<code>long</code>、<code>double</code>)与对象引用（reference类型）和<code>returnAddress</code>类型（指向字节码指令地址）。</p>
-<ol start="3">
-<li><strong>本地方法栈</strong></li>
-</ol>
-<p>与Java虚拟栈类似，只不过本地方法栈是为<code>Native</code>方法使用。</p>
-<ol start="4">
-<li><strong>堆</strong></li>
-</ol>
-<p>堆是JVM管理中内存最大的区域，也是垃圾收集器管理的主要区域。堆的大小可有<code>-Xms</code>（最小堆内存）与<code>-Xmx</code>(最大堆内存)控制。因为现在的垃圾收集器都采用分代收集算法，所以Java堆内存可以细分为：新生代和老年代。新生代再细致一点还可以划分成Eden空间、From Survivor空间与To Survivor空间。</p>
-<p><img src="C:\Users\cang\AppData\Local\Temp\1536505642276.png" alt="1536505642276"></p>
-<ol start="5">
-<li><strong>方法区</strong></li>
-</ol>
-<p>方法区用来存储了每一个类的结构信息，例如运行时常量池（ Runtime Constant Pool）、字段和方法数据、构造函数和普通方法的字节码内容、还包括一些在类、实例、接口初始化时用到的特殊方法。总之，就是用来存储类的描述信息——元数据的。有个别名叫做Non-Heap（非堆）。</p>
-<ol start="6">
-<li><strong>运行时常量池</strong></li>
-</ol>
-<p>运行时常量池是方法区的一部分，主要存储类在编译过程中生成的字面量与符号引用。</p>
-
+        <h1 id="JVM介绍"><a href="#JVM介绍" class="headerlink" title="JVM介绍"></a>JVM介绍</h1><p>学过Java的程序员相信都知道Java的“一次编译，到处运行”，这是因为Java的半编译半解释特性，将Java源代码编译成与平台无关的字节码，然后解释运行Java字节码。负责执行Java字节码的就是JVM(Java Virtual Machine)。</p><p><strong>“Java is not platform-independent, it is the platform.”</strong> C++之父曾经这么评价过Java。个人理解是说Java它自身就是一个平台，而这个平台就是JVM。</p><blockquote><p>JVM可以理解成一个抽象的计算机，有自己的硬件架构，如堆栈，处理器等，还有自己的指令集。JVM屏蔽与具体操作系统的操作细节，Java程序只需生成在JVM上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。</p></blockquote><p>所以可以这么说：<strong>Java是平台无关的，而JVM是平台有关的</strong>，每个操作系统对于JVM的具体实现方式都不同。</p><p><img src="C:\Users\cang\Downloads\553px-Java_virtual_machine_architecture.svg.png" alt="不同系统的JVM"></p><h1 id="JVM内存区域"><a href="#JVM内存区域" class="headerlink" title="JVM内存区域"></a>JVM内存区域</h1><p>JVM虽然有很多不同实现：如Oracle的<strong>HotSpot VM</strong>与IBM的<strong>J9</strong>，但最流行的还是Oracle的HotSpot。JVM实现不同，但是还是同一套技术规范的。下图为JVM的内存结构划分：</p><p><img src="C:\Users\cang\Desktop\JVM内存结构.png" alt="JVM数据内存模型"></p><h1 id="JVM结构介绍"><a href="#JVM结构介绍" class="headerlink" title="JVM结构介绍"></a>JVM结构介绍</h1><p>如上图所示，JVM内存数据模型，分成：运行时数据区，执行引擎与本地方法接口，还有最后一部分：直接内存。直接内存是指JVM的堆外内存，它不在JVM内存模型中，再NIO类中，可以使用Native函数直接分配堆外内存，直接对内存进行操作。</p><h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>运行时数据区是JVM在执行程序中所管理的内存。它们有不同的用途，以及创建与销毁时间。比如线程私有的内存空间：程序计数器、Java虚拟机栈，本地方法栈。所有线程共享，所有对象实例以及数组都在该区域分配内存的堆，还有存储类信息、常量、静态变量等数据的方法区。</p><p>１. <strong>程序计数器</strong></p><p>程序计数器是比较小的内存区域，可以看出当前线程所执行的字节码的行号指示器。当线程需要获取执行下一条指令时，通过改变程序计数器来实现。应为程序计数器是线程私有的，所以各个计数器互不影响。程序计数器记录的是字节码指令的地址，如果执行的是<code>Native</code>方法，则计算器为空。</p><ol start="2"><li><strong>Java虚拟机</strong></li></ol><p>描述的Java方法执行的内存模型：每个方法被执行时，都会创建一个栈帧，用于存储局部变量表、操作数栈、动态链接，方法出入口等。其中局部变量表存放8中基本类型(<code>boolean</code>、<code>byte</code>、<code>char</code>、<code>short</code>、<code>int</code>、<code>float</code>、<code>long</code>、<code>double</code>)与对象引用（reference类型）和<code>returnAddress</code>类型（指向字节码指令地址）。</p><ol start="3"><li><strong>本地方法栈</strong></li></ol><p>与Java虚拟栈类似，只不过本地方法栈是为<code>Native</code>方法使用。</p><ol start="4"><li><strong>堆</strong></li></ol><p>堆是JVM管理中内存最大的区域，也是垃圾收集器管理的主要区域。堆的大小可有<code>-Xms</code>（最小堆内存）与<code>-Xmx</code>(最大堆内存)控制。因为现在的垃圾收集器都采用分代收集算法，所以Java堆内存可以细分为：新生代和老年代。新生代再细致一点还可以划分成Eden空间、From Survivor空间与To Survivor空间。</p><p><img src="C:\Users\cang\AppData\Local\Temp\1536505642276.png" alt="1536505642276"></p><ol start="5"><li><strong>方法区</strong></li></ol><p>方法区用来存储了每一个类的结构信息，例如运行时常量池（ Runtime Constant Pool）、字段和方法数据、构造函数和普通方法的字节码内容、还包括一些在类、实例、接口初始化时用到的特殊方法。总之，就是用来存储类的描述信息——元数据的。有个别名叫做Non-Heap（非堆）。</p><ol start="6"><li><strong>运行时常量池</strong></li></ol><p>运行时常量池是方法区的一部分，主要存储类在编译过程中生成的字面量与符号引用。</p>
       
 
       
@@ -499,7 +465,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">事务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">动态代理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,18 +493,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">事务</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -531,7 +501,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态代理</a>
+                <a href="javascript:void(0)" class="js-tag color4">Open api</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,10 +526,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">实例</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Open api</a>
               </li>
              
               <li class="article-tag-list-item">
