@@ -21,8 +21,6 @@
 <meta name="twitter:title" content="读书">
 <meta name="twitter:description" content="记录自己的生活与学习">
   
-    <link rel="alternative" href="/atom.xml" title="Chason&#39;s Blog" type="application/atom+xml">
-  
   
     <link rel="icon" href="/favicon.png">
   
@@ -84,12 +82,6 @@ var _hmt = _hmt || [];
     			
             
     			
-    			<a q-on="click: openSlider(e, 'program')" href="javascript:void(0)">编程</a>
-    			
-            
-    			
-    			<a q-on="click: openSlider(e, 'life')" href="javascript:void(0)">生活</a>
-    			
             
     			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
@@ -101,7 +93,7 @@ var _hmt = _hmt || [];
 				
 					<a class="github" target="_blank" href="https://github.com/cangqiong" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 		        
 			</div>
 		</nav>
@@ -140,7 +132,7 @@ var _hmt = _hmt || [];
 					
 						<a class="github" target="_blank" href="https://github.com/cangqiong" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 				</div>
 			</nav>
@@ -355,7 +347,7 @@ var _hmt = _hmt || [];
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -375,12 +367,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
-    
-      
-      
-      
     
       
       
@@ -392,19 +378,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 25%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 25%" q-on="click: openSlider(e, 'program')"><a href="javascript:void(0)" q-class="active:program">编程</a></li>
-      
         
       
-      <li style="width: 25%" q-on="click: openSlider(e, 'life')"><a href="javascript:void(0)" q-class="active:life">生活</a></li>
-      
-        
-      
-      <li style="width: 25%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -425,6 +405,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DB</a>
               </li>
              
@@ -433,15 +417,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态代理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">事务</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态代理</a>
               </li>
              
               <li class="article-tag-list-item">

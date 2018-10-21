@@ -8,22 +8,20 @@
   <link rel="dns-prefetch" href="https://cangqiong.github.io">
   <title>Java代理 | Chason&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在使用Java的过程中，逐渐开始了解设计模式，其中代理模式是其中比较简单的设计模式，日常工作中也经常接触到代理模式的使用。代理模式代理模式（Proxy Pattern）使用代理对象完成用户请求，隐藏用户对真实对象的访问。代理模式其实非常容易理解。举个简单的例子： 小刘要找个房子，但他找房子并没有直接和房东联系，而是和中介联系。对于小刘而言，他作为客户并没有和房东（真实对象）打交道，只和中介（代理对">
+  <meta name="description" content="在使用Java的过程中，逐渐开始了解设计模式，其中代理模式是其中比较简单的设计模式，日常工作中也经常接触到代理模式的使用。  代理模式代理模式（Proxy Pattern）使用代理对象完成用户请求，隐藏用户对真实对象的访问。代理模式其实非常容易理解。举个简单的例子： 小刘要找个房子，但他找房子并没有直接和房东联系，而是和中介联系。对于小刘而言，他作为客户并没有和房东（真实对象）打交道，只和中介（">
 <meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java代理">
 <meta property="og:url" content="https://cangqiong.github.io/2018/03/25/java-and-proxy/index.html">
 <meta property="og:site_name" content="Chason&#39;s Blog">
-<meta property="og:description" content="在使用Java的过程中，逐渐开始了解设计模式，其中代理模式是其中比较简单的设计模式，日常工作中也经常接触到代理模式的使用。代理模式代理模式（Proxy Pattern）使用代理对象完成用户请求，隐藏用户对真实对象的访问。代理模式其实非常容易理解。举个简单的例子： 小刘要找个房子，但他找房子并没有直接和房东联系，而是和中介联系。对于小刘而言，他作为客户并没有和房东（真实对象）打交道，只和中介（代理对">
+<meta property="og:description" content="在使用Java的过程中，逐渐开始了解设计模式，其中代理模式是其中比较简单的设计模式，日常工作中也经常接触到代理模式的使用。  代理模式代理模式（Proxy Pattern）使用代理对象完成用户请求，隐藏用户对真实对象的访问。代理模式其实非常容易理解。举个简单的例子： 小刘要找个房子，但他找房子并没有直接和房东联系，而是和中介联系。对于小刘而言，他作为客户并没有和房东（真实对象）打交道，只和中介（">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Proxy_pattern_diagram.svg/439px-Proxy_pattern_diagram.svg.png">
 <meta property="og:updated_time" content="2018-03-25T14:07:22.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java代理">
-<meta name="twitter:description" content="在使用Java的过程中，逐渐开始了解设计模式，其中代理模式是其中比较简单的设计模式，日常工作中也经常接触到代理模式的使用。代理模式代理模式（Proxy Pattern）使用代理对象完成用户请求，隐藏用户对真实对象的访问。代理模式其实非常容易理解。举个简单的例子： 小刘要找个房子，但他找房子并没有直接和房东联系，而是和中介联系。对于小刘而言，他作为客户并没有和房东（真实对象）打交道，只和中介（代理对">
+<meta name="twitter:description" content="在使用Java的过程中，逐渐开始了解设计模式，其中代理模式是其中比较简单的设计模式，日常工作中也经常接触到代理模式的使用。  代理模式代理模式（Proxy Pattern）使用代理对象完成用户请求，隐藏用户对真实对象的访问。代理模式其实非常容易理解。举个简单的例子： 小刘要找个房子，但他找房子并没有直接和房东联系，而是和中介联系。对于小刘而言，他作为客户并没有和房东（真实对象）打交道，只和中介（">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Proxy_pattern_diagram.svg/439px-Proxy_pattern_diagram.svg.png">
-  
-    <link rel="alternative" href="/atom.xml" title="Chason&#39;s Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -86,12 +84,6 @@ var _hmt = _hmt || [];
     			
             
     			
-    			<a q-on="click: openSlider(e, 'program')" href="javascript:void(0)">编程</a>
-    			
-            
-    			
-    			<a q-on="click: openSlider(e, 'life')" href="javascript:void(0)">生活</a>
-    			
             
     			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
@@ -103,7 +95,7 @@ var _hmt = _hmt || [];
 				
 					<a class="github" target="_blank" href="https://github.com/cangqiong" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 		        
 			</div>
 		</nav>
@@ -142,7 +134,7 @@ var _hmt = _hmt || [];
 					
 						<a class="github" target="_blank" href="https://github.com/cangqiong" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 				</div>
 			</nav>
@@ -188,7 +180,45 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote><p>在使用Java的过程中，逐渐开始了解设计模式，其中代理模式是其中比较简单的设计模式，日常工作中也经常接触到代理模式的使用。</p></blockquote><h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><p>代理模式（Proxy Pattern）使用代理对象完成用户请求，隐藏用户对真实对象的访问。代理模式其实非常容易理解。举个简单的例子： 小刘要找个房子，但他找房子并没有直接和房东联系，而是和中介联系。对于小刘而言，他作为客户并没有和房东（真实对象）打交道，只和中介（代理对象）沟通。似乎房东不存在，但事实上中介必须得有房东的授权，在核心问题上还得请示房东。</p><p>在软件设计中，使用代理模式的场景也很多，比如为了系统的安全性屏蔽客户端访问真实的对象，或者为了屏蔽真实对象的实现细节，也可能是为了提升系统性能，对真实对象进行封装，到使用时候才进行初始化，从而达到延迟加载的目的。</p><h2 id="代理模式架构"><a href="#代理模式架构" class="headerlink" title="代理模式架构"></a>代理模式架构</h2><p>代理模式架构比较简单，如下图所示，</p><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Proxy_pattern_diagram.svg/439px-Proxy_pattern_diagram.svg.png" alt="代理模式图片"></p><p>​ 代理模式架构图</p><p>代理对象与真实对象实现同一主题接口，当客户端向真实对象发起请求时，代理对象调用真实对象进行操作。</p><h2 id="代理模式简单样例"><a href="#代理模式简单样例" class="headerlink" title="代理模式简单样例"></a>代理模式简单样例</h2><p>下面给出一个代码样例。</p><p><strong>主题接口：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ISubject</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">doAction</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>真实对象：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealObject</span> <span class="keyword">implements</span> <span class="title">ISubject</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">doAction</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"RealObject do something!"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Real object"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>主题接口：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyObject</span> <span class="keyword">implements</span> <span class="title">ISubject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> RealObject realObject;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">doAction</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(realObject == <span class="keyword">null</span>) &#123;  <span class="comment">// 在真正使用的时候，才创建真实对象</span></span><br><span class="line">            realObject = <span class="keyword">new</span> RealObject();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"ProxyObject do something!"</span>);</span><br><span class="line">        <span class="comment">// 执行真实对象的方法</span></span><br><span class="line">        <span class="keyword">return</span> realObject.doAction();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>客户端：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line"> 		ISubject subject = <span class="keyword">new</span> ProxyObject(); <span class="comment">//使用代理</span></span><br><span class="line"> 		subject.doAction(); </span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><p>上面的代码实例是静态代理，下面介绍动态代理。动态代理是指在运行时动态生成代理类。</p><p>刚才的静态代理虽然看起来简单，但其实有很多缺点：</p><ol><li><p>代理类与真实类实现了相同的主题接口，代理对象与真实对象实现了相同的方法。这样就会出现大量的代码重复。如果主题接口增加一个方法，除了真实对象要实现这个方法外，代理对象也要实现这个方法。这样增加了维护的复杂度。</p></li><li><p>代理对象只能代理一种类型的对象。如果要代理多种类型的对象的话。每个真实对象都必须要有对应的代理对象。</p><p>​</p></li></ol><p>如果可以通过一个代理类完成全部的代理的功能，那就需要使用动态代理。静态代理是在编译阶段就已经确定代理对象，而动态代理实在运行时，通过反射机制实现动态代理，并且能够代理多种类型的对象。</p><h1 id="动态代理实现"><a href="#动态代理实现" class="headerlink" title="动态代理实现"></a>动态代理实现</h1><h2 id="JDK自带实现"><a href="#JDK自带实现" class="headerlink" title="JDK自带实现"></a>JDK自带实现</h2><p>动态代理类使用字节码动态生成加载技术，在运行时生成加载类。其中JDK自带实现动态代理功能，但功能较弱，只能生成同一个接口的代理类。下面对上面的实例进行改造：</p><p><strong>动态代理</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubjectHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> ISubject realObject; <span class="comment">//定义主题接口</span></span><br><span class="line"> </span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//如果第一次调用，生成真实对象</span></span><br><span class="line">        <span class="keyword">if</span>(realObject == <span class="keyword">null</span>)&#123;</span><br><span class="line">            realObject = <span class="keyword">new</span> RealObject();</span><br><span class="line">        &#125;</span><br><span class="line">         System.out.println(<span class="string">"ProxyObject do something!"</span>);</span><br><span class="line">        <span class="comment">// 返回真实对象完成实际的操作 </span></span><br><span class="line">         <span class="keyword">return</span> method.invoke(realObject, args);  </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>上面实现了Handler,类似于上面代理类中具体逻辑。</p><p><strong>生成动态代理对象</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bigdata.spitter.featch;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubjectHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> ISubject realObject;<span class="comment">//定义主题接口</span></span><br><span class="line"> </span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//如果第一次调用，生成真实对象</span></span><br><span class="line">        <span class="keyword">if</span>(realObject == <span class="keyword">null</span>)&#123;</span><br><span class="line">            realObject = <span class="keyword">new</span> RealObject();</span><br><span class="line">        &#125;</span><br><span class="line">         System.out.println(<span class="string">"ProxyObject do something!"</span>);</span><br><span class="line">        <span class="comment">// 返回真实对象完成实际的操作 </span></span><br><span class="line">        <span class="comment">//  return realObject.doAction();</span></span><br><span class="line">        <span class="keyword">return</span> method.invoke(realObject, args);  </span><br><span class="line">	&#125; </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ISubject <span class="title">createProxy</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ISubject proxy = (ISubject)Proxy.newProxyInstance(</span><br><span class="line">        ClassLoader.getSystemClassLoader(), <span class="keyword">new</span> Class[]&#123;ISubject.class&#125;, <span class="keyword">new</span> SubjectHandler());</span><br><span class="line">        <span class="keyword">return</span> proxy;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>运行实例</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </span><br><span class="line">        SubjectHandler subjectHandler = <span class="keyword">new</span> SubjectHandler();  </span><br><span class="line">        ISubject proxy = (ISubject)subjectHandler.createProxy();  </span><br><span class="line">        proxy.doAction();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>上面是基于JDK自带的动态代理实现方式，代理类逻辑由SubjectHandler，生成代理类后，由newProxyInstance()方法返回代理类的实例，一个动态代理就完成了。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文讲述了代理模式、静态代理与动态代理的区别，还有基于JDK自带功能动态代理的实现。总而言之，代理就是屏蔽或隐藏真实对象的行为，避免暴露更多的对象信息，降低客户端使用真实对象的复杂度。</p>
+        <blockquote>
+<p>在使用Java的过程中，逐渐开始了解设计模式，其中代理模式是其中比较简单的设计模式，日常工作中也经常接触到代理模式的使用。</p>
+</blockquote>
+<h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><p>代理模式（Proxy Pattern）使用代理对象完成用户请求，隐藏用户对真实对象的访问。代理模式其实非常容易理解。举个简单的例子： 小刘要找个房子，但他找房子并没有直接和房东联系，而是和中介联系。对于小刘而言，他作为客户并没有和房东（真实对象）打交道，只和中介（代理对象）沟通。似乎房东不存在，但事实上中介必须得有房东的授权，在核心问题上还得请示房东。</p>
+<p>在软件设计中，使用代理模式的场景也很多，比如为了系统的安全性屏蔽客户端访问真实的对象，或者为了屏蔽真实对象的实现细节，也可能是为了提升系统性能，对真实对象进行封装，到使用时候才进行初始化，从而达到延迟加载的目的。</p>
+<h2 id="代理模式架构"><a href="#代理模式架构" class="headerlink" title="代理模式架构"></a>代理模式架构</h2><p>代理模式架构比较简单，如下图所示，</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Proxy_pattern_diagram.svg/439px-Proxy_pattern_diagram.svg.png" alt="代理模式图片"></p>
+<p>​                                        代理模式架构图</p>
+<p>代理对象与真实对象实现同一主题接口，当客户端向真实对象发起请求时，代理对象调用真实对象进行操作。</p>
+<h2 id="代理模式简单样例"><a href="#代理模式简单样例" class="headerlink" title="代理模式简单样例"></a>代理模式简单样例</h2><p>下面给出一个代码样例。</p>
+<p><strong>主题接口：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ISubject</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">doAction</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>真实对象：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealObject</span> <span class="keyword">implements</span> <span class="title">ISubject</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">doAction</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"RealObject do something!"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Real object"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>主题接口：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyObject</span> <span class="keyword">implements</span> <span class="title">ISubject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> RealObject realObject;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">doAction</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(realObject == <span class="keyword">null</span>) &#123;  <span class="comment">// 在真正使用的时候，才创建真实对象</span></span><br><span class="line">            realObject = <span class="keyword">new</span> RealObject();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"ProxyObject do something!"</span>);</span><br><span class="line">        <span class="comment">// 执行真实对象的方法</span></span><br><span class="line">        <span class="keyword">return</span> realObject.doAction();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>客户端：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line"> 		ISubject subject = <span class="keyword">new</span> ProxyObject(); <span class="comment">//使用代理</span></span><br><span class="line"> 		subject.doAction(); </span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><p>上面的代码实例是静态代理，下面介绍动态代理。动态代理是指在运行时动态生成代理类。</p>
+<p>刚才的静态代理虽然看起来简单，但其实有很多缺点：</p>
+<ol>
+<li><p>代理类与真实类实现了相同的主题接口，代理对象与真实对象实现了相同的方法。这样就会出现大量的代码重复。如果主题接口增加一个方法，除了真实对象要实现这个方法外，代理对象也要实现这个方法。这样增加了维护的复杂度。</p>
+</li>
+<li><p>代理对象只能代理一种类型的对象。如果要代理多种类型的对象的话。每个真实对象都必须要有对应的代理对象。</p>
+<p>​</p>
+</li>
+</ol>
+<p>如果可以通过一个代理类完成全部的代理的功能，那就需要使用动态代理。静态代理是在编译阶段就已经确定代理对象，而动态代理实在运行时，通过反射机制实现动态代理，并且能够代理多种类型的对象。</p>
+<h1 id="动态代理实现"><a href="#动态代理实现" class="headerlink" title="动态代理实现"></a>动态代理实现</h1><h2 id="JDK自带实现"><a href="#JDK自带实现" class="headerlink" title="JDK自带实现"></a>JDK自带实现</h2><p>动态代理类使用字节码动态生成加载技术，在运行时生成加载类。其中JDK自带实现动态代理功能，但功能较弱，只能生成同一个接口的代理类。下面对上面的实例进行改造：</p>
+<p><strong>动态代理</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubjectHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> ISubject realObject; <span class="comment">//定义主题接口</span></span><br><span class="line"> </span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//如果第一次调用，生成真实对象</span></span><br><span class="line">        <span class="keyword">if</span>(realObject == <span class="keyword">null</span>)&#123;</span><br><span class="line">            realObject = <span class="keyword">new</span> RealObject();</span><br><span class="line">        &#125;</span><br><span class="line">         System.out.println(<span class="string">"ProxyObject do something!"</span>);</span><br><span class="line">        <span class="comment">// 返回真实对象完成实际的操作 </span></span><br><span class="line">         <span class="keyword">return</span> method.invoke(realObject, args);  </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面实现了Handler,类似于上面代理类中具体逻辑。</p>
+<p><strong>生成动态代理对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bigdata.spitter.featch;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubjectHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> ISubject realObject;<span class="comment">//定义主题接口</span></span><br><span class="line"> </span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//如果第一次调用，生成真实对象</span></span><br><span class="line">        <span class="keyword">if</span>(realObject == <span class="keyword">null</span>)&#123;</span><br><span class="line">            realObject = <span class="keyword">new</span> RealObject();</span><br><span class="line">        &#125;</span><br><span class="line">         System.out.println(<span class="string">"ProxyObject do something!"</span>);</span><br><span class="line">        <span class="comment">// 返回真实对象完成实际的操作 </span></span><br><span class="line">        <span class="comment">//  return realObject.doAction();</span></span><br><span class="line">        <span class="keyword">return</span> method.invoke(realObject, args);  </span><br><span class="line">	&#125; </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ISubject <span class="title">createProxy</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ISubject proxy = (ISubject)Proxy.newProxyInstance(</span><br><span class="line">        ClassLoader.getSystemClassLoader(), <span class="keyword">new</span> Class[]&#123;ISubject.class&#125;, <span class="keyword">new</span> SubjectHandler());</span><br><span class="line">        <span class="keyword">return</span> proxy;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>运行实例</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </span><br><span class="line">        SubjectHandler subjectHandler = <span class="keyword">new</span> SubjectHandler();  </span><br><span class="line">        ISubject proxy = (ISubject)subjectHandler.createProxy();  </span><br><span class="line">        proxy.doAction();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面是基于JDK自带的动态代理实现方式，代理类逻辑由SubjectHandler，生成代理类后，由newProxyInstance()方法返回代理类的实例，一个动态代理就完成了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文讲述了代理模式、静态代理与动态代理的区别，还有基于JDK自带功能动态代理的实现。总而言之，代理就是屏蔽或隐藏真实对象的行为，避免暴露更多的对象信息，降低客户端使用真实对象的复杂度。</p>
+
       
 
       
@@ -406,7 +436,7 @@ var _hmt = _hmt || [];
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -426,12 +456,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
-    
-      
-      
-      
     
       
       
@@ -443,19 +467,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 25%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 25%" q-on="click: openSlider(e, 'program')"><a href="javascript:void(0)" q-class="active:program">编程</a></li>
-      
         
       
-      <li style="width: 25%" q-on="click: openSlider(e, 'life')"><a href="javascript:void(0)" q-class="active:life">生活</a></li>
-      
-        
-      
-      <li style="width: 25%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -476,6 +494,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DB</a>
               </li>
              
@@ -484,15 +506,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态代理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">事务</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态代理</a>
               </li>
              
               <li class="article-tag-list-item">
