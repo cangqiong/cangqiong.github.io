@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://cangqiong.github.io/2018/11/25/netty-first-learning/</loc>
+    
+    <lastmod>2018-11-25T08:44:49.169Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://cangqiong.github.io/2018/04/22/build-own-spring/</loc>
     
     <lastmod>2018-10-21T07:16:53.888Z</lastmod>
